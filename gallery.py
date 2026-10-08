@@ -48,7 +48,7 @@ def summary(r: dict) -> dict:
     build = next(c for c in calls if c["stage"] == "build")
     repairs = [c for c in calls if c["stage"] == "repair"]
     if "workers" not in r["final"]:
-        raise SystemExit(f"{r['run']}: final.workers is missing; run scripts/backfill_workers.py")
+        raise SystemExit(f"{r['run']}: final.workers is missing (bench.py records it when a run ends)")
     return {"run": r["run"], "combo": r["run"].split("-")[0], "says": r["says"], "cost": round(sum(c["cost"] for c in calls), 2),
             "minutes": r["final"]["minutes"], "build_cost": stage("build", "cost"), "repair_cost": stage("repair", "cost"),
             "build_min": round(stage("build", "wall_s") / 60, 1), "repair_min": round(stage("repair", "wall_s") / 60, 1),
@@ -158,10 +158,10 @@ def publish_games(rows: list[dict]) -> None:
         shutil.copyfile(HERE / "runs" / run / "screenshot.png", SITE / "shots" / f"{run}.png")
 
 
-def sitemap(today: datetime.date) -> str:
+def sitemap(lastmod: str) -> str:
     alternates = (f'<xhtml:link rel="alternate" hreflang="en" href="{ORIGIN}/"/>'
                   f'<xhtml:link rel="alternate" hreflang="fa" href="{ORIGIN}/fa/"/>')
-    urls = "".join(f"\n  <url>\n    <loc>{ORIGIN}/{cfg['path']}</loc>\n    {alternates}\n    <lastmod>{today.isoformat()}</lastmod>\n  </url>"
+    urls = "".join(f"\n  <url>\n    <loc>{ORIGIN}/{cfg['path']}</loc>\n    {alternates}\n    <lastmod>{lastmod}</lastmod>\n  </url>"
                    for cfg in PAGES.values())
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" ' \
            f'xmlns:xhtml="http://www.w3.org/1999/xhtml">{urls}\n</urlset>\n'
@@ -215,9 +215,12 @@ def main() -> None:
     for name in STATIC:
         shutil.copyfile(HERE / name, SITE / name)
     publish_games(rows)
-    (SITE / "robots.txt").write_text(f"User-agent: *\nAllow: /\n\nSitemap: {ORIGIN}/sitemap.xml\n", encoding="utf-8")
-    (SITE / "sitemap.xml").write_text(sitemap(today), encoding="utf-8")
-    (SITE / "llms.txt").write_text(llms(rows), encoding="utf-8")
+    # The repository keeps its own copy of what crawlers and agents read, so it is reviewed with the code.
+    lastmod = max(r["updated"][:10] for r in runs if "hidden" in r)
+    for name, text in (("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {ORIGIN}/sitemap.xml\n"),
+                       ("sitemap.xml", sitemap(lastmod)), ("llms.txt", llms(rows))):
+        (HERE / name).write_text(text, encoding="utf-8")
+        shutil.copyfile(HERE / name, SITE / name)
     (SITE / "CNAME").write_text("tanks.cocode.dk\n", encoding="utf-8")
     print(f"site/: {len(rows)} runs, {len(PAGES)} pages")
 

@@ -1,5 +1,7 @@
 # Tank benchmark
 
+![Tank Duel Benchmark: seven AI build setups, fourteen builds of one three.js tank game](og.png)
+
 Which build lifecycle should [graph-loop](https://github.com/cocodedk/graph-loop) use?
 ([issue #463](https://github.com/cocodedk/graph-loop/issues/463).) Each setup below builds its own copy of the
 same game, **Tank Duel** (`spec.md`): a three.js arena where you and the computer drive tanks and shoot shells
