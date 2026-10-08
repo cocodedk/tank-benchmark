@@ -1,0 +1,4 @@
+src/shells.js ignores tangent hits: firing from player (-5,0), heading 0, past computer (0,1.45) leaves its health at 100 despite shell contact.
+src/shells.js misses first wall contact when firing from (-10.8,-11.1), heading 0, allowing the shell to traverse an inner wall's collision boundary with zero bounces.
+src/tools.js discards fractional time: 1,000 valid step calls of 0.001 seconds with W held advance nothing instead of one second.
+Tests do not cover implemented resizing, explosion rendering, play without WebMCP, or clearing held controls on blur.

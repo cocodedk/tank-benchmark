@@ -1,0 +1,3 @@
+A shell that exactly touches a tank now hits it, and `bash test/gate.sh` passes: 31 tests in 43 s.
+
+The check in `hit()` in `src/sim.js` now counts contact at exactly 1.2 + 0.25 = 1.45 from the tank's centre. It allows a 1e-9 margin so floating-point rounding can't cause a miss. The grazing test in `test/test_shells.py` now runs the reviewer's 1.45 case alongside the earlier 1.449 one. Both times the computer loses 25 health and the shell is gone.

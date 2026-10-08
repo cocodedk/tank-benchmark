@@ -1,0 +1,2 @@
+src/input.js and src/sim.js clear Space after one step, so holding it never fires again after the cooldown, contrary to the held-key requirement.
+src/shells.js ignores exact wall tangencies: firing from (-15, 4.75) at heading 0 passes along the inner wall at z=5 with bounces=0 instead of counting the contact.

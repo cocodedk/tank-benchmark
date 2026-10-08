@@ -1,0 +1,14 @@
+...............F..................
+======================================================================
+FAIL: test_the_computer_can_win_a_round (test_rounds.RoundsTest.test_the_computer_can_win_a_round)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "test/test_rounds.py", line 30, in test_the_computer_can_win_a_round
+    self.assertIn("The computer wins the round", g.page.inner_text("body"))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'The computer wins the round' not found in 'You\nComputer\nScore 0 : 0 · Round 1\nW/↑ forward · S/↓ back · A/← D/→ turn · Space fire'
+
+----------------------------------------------------------------------
+Ran 34 tests in 18.239s
+
+FAILED (failures=1)

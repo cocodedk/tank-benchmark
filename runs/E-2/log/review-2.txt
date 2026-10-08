@@ -1,0 +1,3 @@
+src/game.js:58–59 checks only shell endpoints, allowing grazing hits to pass through tanks: with AI off, computer at (0,0) and player at (-5,1.449) heading 0, firing and stepping 1 second leaves computer health at 100 despite the shell crossing its collision circle.
+Nonblocking: the site lacks /llms.txt describing its WebMCP tools, as required by the supplied repository instructions.
+Nonblocking: test/test_tools.py proves camera coverage through direct module imports and page.evaluate instead of WebMCP tools, contrary to the supplied proof instructions.

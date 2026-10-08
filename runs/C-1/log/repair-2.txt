@@ -1,0 +1,7 @@
+I fixed all three rejected problems and added a test for each; the suite passes, 31 tests in 60 s.
+
+- **Tank pushed into the wall** (`drive` in `src/sim.js`): when pushing the tank off the other tank would put it inside a wall or outside the arena, it now stays where it was for that step. The test uses the reviewer's case at (-10.2, 8) and checks the player stays outside the wall.
+- **Shell passing through a tank** (`stepShells` in `src/sim.js`): a hit is now checked along the shell's whole path in each step, not just where it ends up. The test is the reviewer's graze at (0, 1.449), which now takes the computer to 75 health.
+- **Computer stuck without firing** (`findPath` in `src/ai.js`): it now picks a target spot whose line to the player is clear by an extra 0.75 units. Once the computer is within that distance of the spot, its own line is clear too, so it fires instead of freezing. If no such spot exists it falls back to the old check, and its last waypoint is never thrown away. The test uses the player at (0, 12): the computer finds the player and hits them within 30 s.
+
+I haven't checked that the new tests fail on the old code.

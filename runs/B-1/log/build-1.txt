@@ -1,0 +1,1 @@
+The game is built under `index.html` and `src/`, and `bash test/gate.sh` passes all 25 tests in 41 s (down from about 100 s, now that the page skips rendering while paused and idle), though I checked the camera framing by working out the angles rather than looking at a screenshot.

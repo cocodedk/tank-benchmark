@@ -1,0 +1,6 @@
+Both findings are fixed, and `bash test/gate.sh` passes with 42 tests (two new ones).
+
+- **Shell fired from inside a wall:** a shell whose centre is inside a wall now leaves by the face it is moving into. That makes it bounce instead of flying through. The change is in `wallContact` in `src/geom.js`, and `moveShells` in `src/sim.js` passes the shell's velocity to it. From (-10.2,-5.1) the shell now bounces back and hits the tank that fired it.
+- **Exact contact:** a shell exactly touching a tank (distance 1.45) now counts as a hit. The check is `<=` with a 1e-9 allowance in `moveShells` (`src/sim.js`).
+
+The two new tests in `test/test_shells.py` cover those two cases.

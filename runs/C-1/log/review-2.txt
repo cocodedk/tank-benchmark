@@ -1,0 +1,4 @@
+src/sim.js misses tangent tank hits: firing from (-5,0) at heading 0 past a tank at (0,1.45) leaves its health at 100 despite shell contact.
+src/sim.js checks wall contact only at shell endpoints, allowing a shell from (-9.1,4.76) at heading 315 to cross the wall corner at (-9,5) without bouncing.
+src/tools.js accepts place without heading instead of rejecting missing input, adding an untested optional-heading behavior.
+The site lacks /llms.txt describing its WebMCP tools, as required by the supplied repository instructions.

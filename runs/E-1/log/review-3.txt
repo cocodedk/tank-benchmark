@@ -1,0 +1,3 @@
+src/game.js fly() checks tanks in object order rather than impact order, so a shell crossing both tanks during one tick can damage the farther player instead of the nearer computer.
+src/game.js bounce() checks only shell endpoints, allowing a shell moving from (-9.258, 4.919) to (-9.081, 4.742) to cross within 0.24 units of an inner-wall corner without its required bounce.
+src/view.js fit() moves the entire arena beyond the camera's fixed 200-unit far plane at a 300×1000 browser size, making the arena and both tanks disappear.

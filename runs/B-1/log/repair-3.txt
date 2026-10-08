@@ -1,0 +1,7 @@
+All three reviewer findings are fixed, and `bash test/gate.sh` passes all 37 tests in 61 s.
+
+- **AI stall (`src/ai.js`):** the computer now plans toward spots that keep sight of the player with a margin (`R_SHELL + 0.55`). Before, it stopped within 0.5 of a spot that only just saw the player, so it saw nothing from where it actually stood. With the player at (-18,-8) it now hits the player within the 60 s the test allows.
+- **Grazing shells (`src/shells.js`):** a shell's whole step is now tested against each tank, not just where the step ends. The computer at (3.225,1.449) now takes the hit.
+- **Held keys (`src/input.js`):** the game now tracks physical keys and derives the controls from them, so holding W and ArrowUp and then releasing W keeps the tank moving.
+
+Each fix has a new test.

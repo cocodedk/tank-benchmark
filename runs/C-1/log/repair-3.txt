@@ -1,0 +1,7 @@
+I fixed all four rejected points and the suite passes: 32 tests, 9.6 s, much faster than the previous 35–60 s; it's the same 32 tests, so the difference is probably machine load.
+
+- **Tank hit when only touching** (`moveShell` in `src/sim.js`): a shell that exactly touches a tank now counts as a hit. The test fires past a tank at 1.449 and at 1.45 and expects 75 health both times.
+- **Shell slipping past a wall corner** (`stepShells` in `src/sim.js`): shells now move in 25 small sub-steps per game step, 0.01 units each, so a brief corner touch can't fall between two checks. Shells still move 15 units/s.
+- **The reviewer's corner example doesn't touch the wall:** a shell at heading 315 from (-9.1, 4.76) is already moving away from the corner at (-9, 5). The new test uses a shell along z = 4.76 at heading 0 instead, which touches the corner for only 0.14 units, less than one old 0.25 step. It now bounces.
+- **`place` without a heading** (`src/tools.js`): now refused with `ok: false`; a test covers it.
+- **`/llms.txt`**: added; it says the page declares WebMCP tools and lists all seven. The smoke test fetches it and checks every tool name is there.

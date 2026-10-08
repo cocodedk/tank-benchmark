@@ -1,0 +1,3 @@
+src/tools.js accepts fire({"tank":"__proto__"}), creates a shell with invalid coordinates and writes cooldown and shot fields onto Object.prototype instead of returning an error.
+src/sim.js pushes a stationary computer instead of stopping at contact: with AI off, computer at (17,0) and player at (18.8,2) heading 270, five W-held steps displace the computer.
+src/sim.js checks shell collisions only at step endpoints, so firing from the default player position misses a computer at (0.225,1.449), leaving it at 100 health despite the shell touching it between steps.

@@ -1,0 +1,191 @@
+{
+ "run": "B-2",
+ "builder": [
+  "claude-opus-5-5",
+  "high"
+ ],
+ "workers": [
+  "sonnet-worker",
+  "haiku-worker"
+ ],
+ "repair": [
+  "claude-sonnet-5-5",
+  "medium"
+ ],
+ "fresh": false,
+ "says": "Opus supervises Sonnet and Haiku workers; Sonnet repairs in the same session",
+ "review": [
+  "gpt-6.1-sol",
+  "medium"
+ ],
+ "budget": 10.0,
+ "started": "2026-10-08T12:08:35",
+ "calls": [
+  {
+   "stage": "build",
+   "round": 1,
+   "model": "claude-opus-5-5",
+   "effort": "high",
+   "resumed": false,
+   "kind": "success",
+   "error": false,
+   "cost": 1.8528920000000002,
+   "wall_s": 1226,
+   "turns": 22,
+   "session": "c15dca90-6279-4bcb-8e35-e59ea94d1e13",
+   "cache_read_share": 0.904,
+   "by_model": {
+    "claude-opus-5-5": 1.001,
+    "claude-sonnet-5-5": 0.852
+   }
+  },
+  {
+   "stage": "repair",
+   "round": 2,
+   "model": "claude-sonnet-5-5",
+   "effort": "medium",
+   "resumed": true,
+   "kind": "success",
+   "error": false,
+   "cost": 2.1565492,
+   "wall_s": 104,
+   "turns": 13,
+   "session": "c15dca90-6279-4bcb-8e35-e59ea94d1e13",
+   "cache_read_share": 0.892,
+   "by_model": {
+    "claude-opus-5-5": 1.001,
+    "claude-sonnet-5-5": 1.156
+   }
+  },
+  {
+   "stage": "repair",
+   "round": 3,
+   "model": "claude-sonnet-5-5",
+   "effort": "medium",
+   "resumed": true,
+   "kind": "success",
+   "error": false,
+   "cost": 2.3495652000000002,
+   "wall_s": 92,
+   "turns": 16,
+   "session": "c15dca90-6279-4bcb-8e35-e59ea94d1e13",
+   "cache_read_share": 0.908,
+   "by_model": {
+    "claude-opus-5-5": 1.001,
+    "claude-sonnet-5-5": 1.349
+   }
+  }
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "green": true,
+   "suite_s": 54,
+   "review": "REJECT",
+   "findings": [
+    "src/game.js: With AI off, place computer at (17.6,0,180) and player at (18.8,3,270), then hold W for 1 second: collision resolution moves the stationary computer instead of stopping the player at contact.",
+    "src/game.js: With AI off, place computer at (0,0) and player at (-5,1.449,0), fire and step 0.5 seconds: endpoint-only collision checks miss the shell touching the computer, leaving its health at 100 instead of 75."
+   ],
+   "review_s": 120
+  },
+  {
+   "round": 2,
+   "green": true,
+   "suite_s": 46,
+   "review": "REJECT",
+   "findings": [
+    "src/ai.js:31-36 checks visibility toward the player's centre instead of the actual firing heading, so a stationary player at (-15,-6) remains unharmed after 60 seconds while the computer repeatedly shoots into an inner wall.",
+    "src/game.js:90-94 checks only shell endpoints against walls, so firing from (-8.049759197546795,-3.6102408024532053) at heading 315 passes through an inner-wall corner without bouncing.",
+    "src/game.js:84 excludes exact contact, so firing from (-5,1.45) at heading 0 past a computer at (0,0) leaves its health at 100 although the shell touches it.",
+    "src/tools.js:31 rounds each step duration independently, so 100 valid calls with seconds=0.01 advance 1.667 seconds and move a forward-driving tank 10 units instead of the requested 1 second and 6 units."
+   ],
+   "review_s": 196
+  },
+  {
+   "round": 3,
+   "green": true,
+   "suite_s": 18,
+   "review": "REJECT",
+   "findings": [
+    "src/ai.js rejects every waypoint when the computer starts inside a wall's inflated planning bounds, so valid placements at computer (-10.3, -8) and player (-5, -8) leave it stationary without firing for 30 seconds.",
+    "src/arena.js rejects the legal wall-contact placement (-10.2, -8) because floating-point rounding makes its computed wall distance slightly less than the tank's radius."
+   ],
+   "review_s": 136
+  }
+ ],
+ "now": "finished",
+ "updated": "2026-10-08T12:42:11",
+ "final": {
+  "done": false,
+  "green": true,
+  "review": "REJECT",
+  "repairs": 2,
+  "cost": 6.36,
+  "minutes": 33.2,
+  "diff_lines": 998,
+  "why": "Fix what the reviewer refused (REJECT): src/ai.js rejects every waypoint when the computer starts inside a wall's inflated planning bounds, so valid placements at computer (-10.3, -8) and player (-5, -8) leave it stationary without firing for 30 seconds.; src/arena.js rejects the legal wall-contact placement (-10.2, -8) because floating-point rounding makes its computed wall distance slightly less than the tank's radius.",
+  "workers": 2
+ },
+ "hidden": {
+  "passed": 14,
+  "total": 14,
+  "checks": [
+   {
+    "check": "opens_clean",
+    "passed": true
+   },
+   {
+    "check": "lists_the_seven_tools",
+    "passed": true
+   },
+   {
+    "check": "starts_as_the_spec_says",
+    "passed": true
+   },
+   {
+    "check": "w_drives_six_units_a_second",
+    "passed": true
+   },
+   {
+    "check": "a_and_d_turn_opposite_ways",
+    "passed": true
+   },
+   {
+    "check": "space_fires_one_shell",
+    "passed": true
+   },
+   {
+    "check": "walls_stop_a_tank",
+    "passed": true
+   },
+   {
+    "check": "a_shell_hits_for_25",
+    "passed": true
+   },
+   {
+    "check": "a_shell_bounces_once_then_goes",
+    "passed": true
+   },
+   {
+    "check": "a_shell_can_hit_its_own_tank",
+    "passed": true
+   },
+   {
+    "check": "no_second_shot_within_half_a_second",
+    "passed": true
+   },
+   {
+    "check": "four_hits_end_the_round",
+    "passed": true
+   },
+   {
+    "check": "the_computer_fires_and_hits",
+    "passed": true
+   },
+   {
+    "check": "the_computer_seeks_without_entering_walls",
+    "passed": true
+   }
+  ]
+ }
+}

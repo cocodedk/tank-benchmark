@@ -1,0 +1,4 @@
+src/tank.js:23 resolves walls after tank contact without rechecking tank separation, so placing the computer at (17,0) and the player at (18.767767,1.767767), heading 240, then driving forward for 0.1 seconds leaves their centres only 2.386 units apart instead of at least 2.4.
+src/shells.js:10 checks only step endpoints, so a player firing from (-5,0), heading 0, misses a computer at (0,1.448) even though the shell passes within the combined collision radius of 1.45.
+src/game.js:16 recreates tanks with shots=0 every round, violating the requirement that shots count shells fired throughout the game.
+src/main.js:20 clears an action when either mapped key is released, so holding W and ArrowUp then releasing W stops movement despite ArrowUp remaining held.

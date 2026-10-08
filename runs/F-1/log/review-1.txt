@@ -1,0 +1,3 @@
+src/sim.js settle() permits tank overlap near walls: with AI off, computer at (17,0) and player at (18.8,-1.6) heading 90, holding W for 2 seconds leaves their centres 2.291 units apart instead of at least 2.4.
+src/sim.js moveShell() reflects the wrong velocity component at inner-wall corners: firing from (6.8,1) heading 90 leaves the shell travelling forward after its first contact and removes it on the next step against the same wall.
+The gate passes all 26 tests but takes 135.058 seconds, exceeding the repository's two-minute suite limit.

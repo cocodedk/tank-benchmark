@@ -1,0 +1,2 @@
+src/sim.js moveShell reflects both velocity components near inner-wall corners incorrectly: firing from (5.15, 4.1) at heading 20 reverses x velocity even though the contact normal requires it to remain positive.
+src/sim.js moveShell ignores exact tangential contact because it uses a strict inequality: firing from (0, 0) at heading 0 past a computer at (5.225, 1.45) leaves its health at 100 instead of 75.

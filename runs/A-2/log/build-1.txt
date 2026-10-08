@@ -1,0 +1,9 @@
+The game is built, and `bash test/gate.sh` passes: 38 tests in about 60 s.
+
+- **What's there:** `index.html` plus ES modules under `src/` (none over 100 lines), all seven WebMCP tools, and an `llms.txt` listing them.
+- **Tests:** they cover each "Done when" item. `test/tank.py` is a shared helper, and each test file reuses one Chrome instead of launching one per test. Starting Chrome per test took 165 s, over your 2-minute limit.
+- **Redraw skipping:** the page redraws only when the game state has changed. Without that, software rendering made the paused tool calls slow.
+- **Fire key:** Space fires once per key press (not once per step while held), so "holding Space fires one shell" holds however long it is held.
+- **`place` limits:** it refuses a spot where the tank's whole circle would overlap a wall, not only its centre. A tank touching a wall exactly is allowed.
+- **Real time before pause:** the game runs in real time from page load until `pause` is called. My tests call `pause` and then `reset` to get a known start.
+- **Not run in a browser:** I never ran the page in a browser I could look at, so the look of the arena, tanks and HUD is unchecked. The tests only check that the canvas fills the window and the console stays clean.

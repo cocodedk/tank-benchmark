@@ -1,0 +1,1 @@
+I fixed `fly()` in `src/game.js` so a shell that exactly touches a tank counts as a hit: the reviewer's shot past the computer at (5.225, 1.45) now takes 25 health and removes the shell, and the suite passes all 28 tests in 51 s. The grazing test now uses that exact touching position.

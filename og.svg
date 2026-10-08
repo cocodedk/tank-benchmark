@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Open Graph card, 1200 by 630. og.png is rendered from this file by scripts/render_og.py. -->
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@700&amp;family=Source+Sans+3:wght@400;600&amp;display=swap");
+    .title { font: 700 112px "Saira Semi Condensed", "Arial Narrow", sans-serif; fill: #1f2420; }
+    .deck { font: 400 28px "Source Sans 3", "Segoe UI", sans-serif; fill: #5d665e; }
+    .domain { font: 600 26px "Source Sans 3", "Segoe UI", sans-serif; fill: #5d665e; }
+  </style>
+
+  <rect width="1200" height="630" fill="#f3f4ef"/>
+
+  <text class="title" x="72" y="243">Tank Duel</text>
+  <text class="title" x="72" y="350">Benchmark</text>
+  <text class="deck" x="72" y="402">Cost, time, repairs and hidden checks</text>
+  <text class="deck" x="72" y="436">for each AI build setup, measured on</text>
+  <text class="deck" x="72" y="470">one three.js tank game.</text>
+  <text class="domain" x="72" y="565">tanks.cocode.dk</text>
+
+  <!-- The arena plan, to the game's spec: 40 x 30 units at 10 px a unit, walls 2 x 6 at (±8, ±8), tanks at (±15, 0). -->
+  <rect x="720" y="165" width="400" height="300" fill="#ffffff" stroke="#5d665e" stroke-width="2"/>
+  <rect x="830" y="205" width="20" height="60" fill="#5d665e"/>
+  <rect x="990" y="205" width="20" height="60" fill="#5d665e"/>
+  <rect x="830" y="365" width="20" height="60" fill="#5d665e"/>
+  <rect x="990" y="365" width="20" height="60" fill="#5d665e"/>
+  <line x1="800" y1="315" x2="1040" y2="315" stroke="#5d665e" stroke-width="2" stroke-dasharray="4 6"/>
+  <circle cx="930" cy="315" r="5" fill="#1f2420"/>
+  <circle cx="770" cy="315" r="12" fill="#1f2420"/>
+  <line x1="770" y1="315" x2="788" y2="315" stroke="#1f2420" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="1070" cy="315" r="12" fill="#1f2420"/>
+  <line x1="1070" y1="315" x2="1052" y2="315" stroke="#1f2420" stroke-width="5" stroke-linecap="round"/>
+</svg>

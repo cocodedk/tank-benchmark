@@ -1,0 +1,8 @@
+All four refusals are fixed, and `bash test/gate.sh` passes (30 tests, 15 s). I added a test for each case. Nothing is committed.
+
+- **AI aim (`src/ai.js`):** the computer now fires only when a shell along its real heading would reach the player without touching a wall. It also treats a line that passes close to a wall corner as blocked and moves to find a cleaner one. The new test is `test_player_near_a_wall_corner_gets_hit`.
+- **Shell vs wall corner (`src/game.js`):** shells now move in five small sub-steps per tick, checking walls and tanks at each, so they can't skip a corner. The new test is `test_shell_bounces_off_a_wall_corner`.
+- **Exact contact (`src/game.js`):** a shell exactly touching a tank now counts as a hit. The new test is `test_shell_touching_the_tank_exactly_hits`.
+- **`step` rounding (`src/tools.js`):** leftover fractions of a tick now carry over between calls, so 100 calls of 0.01 s advance exactly 1 s (6 units). The new test is `test_many_short_steps_add_up`.
+
+In `src/game.js`, `moveShell` still has a leftover `{ … }` block from the refactor. It works but is untidy.

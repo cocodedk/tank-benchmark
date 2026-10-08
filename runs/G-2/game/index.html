@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tank Duel</title>
+<link rel="icon" href="data:,">
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #111; font: 15px system-ui, sans-serif; color: #fff; }
+  canvas { display: block; }
+  #hud { position: fixed; top: 10px; left: 10px; right: 10px; display: flex; gap: 24px; align-items: center;
+         text-shadow: 0 1px 2px #000; pointer-events: none; }
+  .bar { width: 160px; height: 12px; background: #0008; border: 1px solid #fff8; display: inline-block; vertical-align: middle; }
+  .bar div { height: 100%; }
+  #bar-player { background: #3b7bff; } #bar-computer { background: #ff4a3d; }
+  #controls { margin-left: auto; opacity: 0.85; }
+  #banner { position: fixed; top: 40%; width: 100%; text-align: center; font-size: 42px; font-weight: bold;
+            text-shadow: 0 2px 6px #000; pointer-events: none; }
+</style>
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
+</head>
+<body>
+<div id="hud">
+  <span>You <span class="bar"><div id="bar-player"></div></span></span>
+  <span>Computer <span class="bar"><div id="bar-computer"></div></span></span>
+  <span id="score"></span>
+  <span id="round"></span>
+  <span id="controls">W/↑ forward · S/↓ back · A/← D/→ turn · Space fire</span>
+</div>
+<div id="banner" hidden></div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

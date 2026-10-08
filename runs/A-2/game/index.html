@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tank Duel</title>
+<link rel="icon" href="data:,">
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #1b2330; color: #fff; font: 15px system-ui, sans-serif; }
+  canvas { display: block; width: 100%; height: 100%; }
+  #hud { position: fixed; inset: 0; pointer-events: none; text-shadow: 0 1px 3px #000; }
+  .bar { position: absolute; top: 12px; width: 220px; }
+  .bar.right { right: 12px; text-align: right; }
+  .bar.left { left: 12px; }
+  .track { height: 14px; margin-top: 4px; background: #0008; border: 1px solid #fff8; }
+  .fill { height: 100%; }
+  #hp-player { background: #2f6fdf; }
+  #hp-computer { background: #d8403a; }
+  #mid { position: absolute; top: 12px; left: 0; right: 0; text-align: center; }
+  #score { font-size: 28px; font-weight: bold; }
+  #banner { position: absolute; top: 40%; left: 0; right: 0; text-align: center; font-size: 44px; font-weight: bold; }
+  #help { position: absolute; bottom: 10px; left: 0; right: 0; text-align: center; opacity: 0.85; }
+</style>
+<script type="importmap">{"imports": {"three": "./vendor/three.module.min.js"}}</script>
+</head>
+<body>
+<canvas id="view"></canvas>
+<div id="hud">
+  <div class="bar left"><b>You</b><div class="track"><div class="fill" id="hp-player"></div></div></div>
+  <div id="mid"><div id="round"></div><div id="score"></div></div>
+  <div class="bar right"><b>Computer</b><div class="track"><div class="fill" id="hp-computer"></div></div></div>
+  <div id="banner"></div>
+  <div id="help">W/↑ forward · S/↓ back · A/← D/→ turn · Space fire</div>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

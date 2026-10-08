@@ -1,0 +1,5 @@
+I fixed the blocking issue and the missing `/llms.txt`, but left the camera test using a direct import. The suite now passes all 24 tests in 105 s, which is close to the two-minute limit.
+
+- **Grazing shells:** a shell now hits a tank if any point on its path during the step comes within 1.45 of the tank's centre. Before, only where the shell ended each step was checked, so a grazing shell could pass straight through. The new test is the reviewer's case, a shot from (−5, 1.449) at a tank at (0, 0), and it now takes 25 health.
+- **`/llms.txt`:** added at the top of the checkout. It says `/index.html` has WebMCP tools and lists all seven with what each does.
+- **Camera test (left as it was):** to run it through a tool, I would have to add camera fields to `describe`. That would change the state format the spec fixes, so the test still imports the camera module directly. Say if you'd rather add the fields.

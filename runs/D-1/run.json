@@ -1,0 +1,188 @@
+{
+ "run": "D-1",
+ "builder": [
+  "claude-sonnet-5-5",
+  "high"
+ ],
+ "workers": [
+  "haiku-worker"
+ ],
+ "repair": [
+  "claude-sonnet-5-5",
+  "medium"
+ ],
+ "fresh": false,
+ "says": "Sonnet builds with a Haiku worker; Sonnet repairs in the same session",
+ "review": [
+  "gpt-6.1-sol",
+  "medium"
+ ],
+ "budget": 10.0,
+ "started": "2026-10-08T12:08:35",
+ "calls": [
+  {
+   "stage": "build",
+   "round": 1,
+   "model": "claude-sonnet-5-5",
+   "effort": "high",
+   "resumed": false,
+   "kind": "success",
+   "error": false,
+   "cost": 1.4722538,
+   "wall_s": 832,
+   "turns": 62,
+   "session": "11433264-c135-4871-b903-f3641defb66a",
+   "cache_read_share": 0.967,
+   "by_model": {
+    "claude-sonnet-5-5": 1.472
+   }
+  },
+  {
+   "stage": "repair",
+   "round": 2,
+   "model": "claude-sonnet-5-5",
+   "effort": "medium",
+   "resumed": true,
+   "kind": "success",
+   "error": false,
+   "cost": 1.6413566000000002,
+   "wall_s": 60,
+   "turns": 14,
+   "session": "11433264-c135-4871-b903-f3641defb66a",
+   "cache_read_share": 0.969,
+   "by_model": {
+    "claude-sonnet-5-5": 1.641
+   }
+  },
+  {
+   "stage": "repair",
+   "round": 3,
+   "model": "claude-sonnet-5-5",
+   "effort": "medium",
+   "resumed": true,
+   "kind": "success",
+   "error": false,
+   "cost": 1.9268232,
+   "wall_s": 217,
+   "turns": 18,
+   "session": "11433264-c135-4871-b903-f3641defb66a",
+   "cache_read_share": 0.97,
+   "by_model": {
+    "claude-sonnet-5-5": 1.927
+   }
+  }
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "green": true,
+   "suite_s": 55,
+   "review": "REJECT",
+   "findings": [
+    "src/tank.js:23 resolves walls after tank contact without rechecking tank separation, so placing the computer at (17,0) and the player at (18.767767,1.767767), heading 240, then driving forward for 0.1 seconds leaves their centres only 2.386 units apart instead of at least 2.4.",
+    "src/shells.js:10 checks only step endpoints, so a player firing from (-5,0), heading 0, misses a computer at (0,1.448) even though the shell passes within the combined collision radius of 1.45.",
+    "src/game.js:16 recreates tanks with shots=0 every round, violating the requirement that shots count shells fired throughout the game.",
+    "src/main.js:20 clears an action when either mapped key is released, so holding W and ArrowUp then releasing W stops movement despite ArrowUp remaining held."
+   ],
+   "review_s": 246
+  },
+  {
+   "round": 2,
+   "green": true,
+   "suite_s": 84,
+   "review": "REJECT",
+   "findings": [
+    "src/shells.js ignores tangent hits: firing from player (-5,0), heading 0, past computer (0,1.45) leaves its health at 100 despite shell contact.",
+    "src/shells.js misses first wall contact when firing from (-10.8,-11.1), heading 0, allowing the shell to traverse an inner wall's collision boundary with zero bounces.",
+    "src/tools.js discards fractional time: 1,000 valid step calls of 0.001 seconds with W held advance nothing instead of one second.",
+    "Tests do not cover implemented resizing, explosion rendering, play without WebMCP, or clearing held controls on blur."
+   ],
+   "review_s": 187
+  },
+  {
+   "round": 3,
+   "green": true,
+   "suite_s": 22,
+   "review": "REJECT",
+   "findings": [
+    "src/collide.js excludes exact wall contact with `d >= r`: placing the player at (-12, -11.25), heading 0, then firing and stepping 0.5 seconds lets the shell graze the inner wall with bounces still 0, violating the first-contact bounce requirement."
+   ],
+   "review_s": 98
+  }
+ ],
+ "now": "finished",
+ "updated": "2026-10-08T12:39:08",
+ "final": {
+  "done": false,
+  "green": true,
+  "review": "REJECT",
+  "repairs": 2,
+  "cost": 5.04,
+  "minutes": 30.0,
+  "diff_lines": 1153,
+  "why": "Fix what the reviewer refused (REJECT): src/collide.js excludes exact wall contact with `d >= r`: placing the player at (-12, -11.25), heading 0, then firing and stepping 0.5 seconds lets the shell graze the inner wall with bounces still 0, violating the first-contact bounce requirement.",
+  "workers": 0
+ },
+ "hidden": {
+  "passed": 14,
+  "total": 14,
+  "checks": [
+   {
+    "check": "opens_clean",
+    "passed": true
+   },
+   {
+    "check": "lists_the_seven_tools",
+    "passed": true
+   },
+   {
+    "check": "starts_as_the_spec_says",
+    "passed": true
+   },
+   {
+    "check": "w_drives_six_units_a_second",
+    "passed": true
+   },
+   {
+    "check": "a_and_d_turn_opposite_ways",
+    "passed": true
+   },
+   {
+    "check": "space_fires_one_shell",
+    "passed": true
+   },
+   {
+    "check": "walls_stop_a_tank",
+    "passed": true
+   },
+   {
+    "check": "a_shell_hits_for_25",
+    "passed": true
+   },
+   {
+    "check": "a_shell_bounces_once_then_goes",
+    "passed": true
+   },
+   {
+    "check": "a_shell_can_hit_its_own_tank",
+    "passed": true
+   },
+   {
+    "check": "no_second_shot_within_half_a_second",
+    "passed": true
+   },
+   {
+    "check": "four_hits_end_the_round",
+    "passed": true
+   },
+   {
+    "check": "the_computer_fires_and_hits",
+    "passed": true
+   },
+   {
+    "check": "the_computer_seeks_without_entering_walls",
+    "passed": true
+   }
+  ]
+ }
+}

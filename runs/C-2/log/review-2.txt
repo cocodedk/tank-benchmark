@@ -1,0 +1,3 @@
+src/ai.js repeatedly selects an already reached waypoint: placing the player at (-10.2, 8) leaves the computer stuck near (-7.8, 0) without firing after 120 seconds, violating the requirement to find a hidden player.
+src/shells.js ignores exact tank contact because it uses a strict distance comparison: firing from (-5, 0), heading 0, past a computer at (0, 1.45) causes no damage despite the shell touching it.
+src/shells.js reflects only one velocity component at diagonal corner contacts: firing from (-11, -3), heading 315, into the corner at (-9, -5) sends the shell southwest instead of reflecting it back toward its shooter.

@@ -1,0 +1,1 @@
+src/shells.js ignores exact tank contact because it uses < instead of <=: with AI disabled, firing from (0, 0) at heading 0 past a tank at (5, 1.45) leaves its health at 100 instead of 75.

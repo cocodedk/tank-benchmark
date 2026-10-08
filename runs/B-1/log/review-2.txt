@@ -1,0 +1,3 @@
+src/ai.js stops short of gaining line of sight: placing the player at (-18,-8) leaves the computer permanently stationary near (14.043,3.594), firing zero shots even after 330 seconds.
+src/shells.js checks only step endpoints and misses grazing hits: with AI disabled, player at (0,0) heading 0 and computer at (3.225,1.449), a fired shell passes through the combined collision radius without causing damage.
+src/input.js loses held controls when aliases overlap: holding W and ArrowUp then releasing W stops forward movement despite ArrowUp remaining held.

@@ -1,0 +1,2 @@
+src/game.js: With AI off, place computer at (17.6,0,180) and player at (18.8,3,270), then hold W for 1 second: collision resolution moves the stationary computer instead of stopping the player at contact.
+src/game.js: With AI off, place computer at (0,0) and player at (-5,1.449,0), fire and step 0.5 seconds: endpoint-only collision checks miss the shell touching the computer, leaving its health at 100 instead of 75.

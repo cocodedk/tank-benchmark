@@ -1,0 +1,3 @@
+src/sim.js hit() misses grazing collisions: with AI off, player at (0,1.449,0) and computer at (10,0,180), firing then stepping 0.7 seconds leaves computer health at 100 despite contact.
+src/sim.js fly() reflects the wrong wall face: firing from (-10.2,10) heading 0 teleports the shell from z=10 to z=8 without reversing its x velocity, then removes it on the next step.
+src/view.js resize() moves the camera beyond its fixed 200-unit far plane at a 200×1200 window size, making the arena and tanks disappear.

@@ -1,0 +1,3 @@
+I fixed the missed hit: `fly()` in `src/game.js` now checks the shell's whole path during each 1/60 s step, so a shell can no longer skip past the edge of a tank; the suite passes all 28 tests in 43 s.
+
+The new test in `test/test_shells.py` replays the reviewer's case: a shot from (0, 0) heading 0 at the computer at (5.225, 1.449) now takes 25 health from it and the shell is removed.

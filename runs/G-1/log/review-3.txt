@@ -1,0 +1,2 @@
+src/sim.js hitTank excludes exact contact: placing the player at (0, 1.45) heading 0 and the computer at (5, 0) lets a shell touch the computer without damaging it.
+src/sim.js newGame leaves game.owed intact, so step(0.01), reset, step(0.01) advances the new game using time accumulated before reset.

@@ -1,0 +1,7 @@
+All three reviewer findings are fixed, and `bash test/gate.sh` passes with 40 tests (two new regression tests, plus new bad-input cases in an existing test).
+
+- **`"__proto__"` as a tank name:** `fire` and `place` now accept only `"player"` or `"computer"` (`isTank` in `src/tools.js`), so any other name gets an error answer.
+- **Stationary computer pushed:** `move` in `src/sim.js` no longer touches a tank that isn't driving. A driving tank squeezed between a wall and the other tank stops where it was, so the other tank never moves.
+- **Shell grazing between steps:** shell hits are now checked against the whole path of the step, not just where the shell ends up (`segmentDistance` in `src/geom.js`).
+
+I added tests for the grazing shell, the squeezed tank and the bad tank names.

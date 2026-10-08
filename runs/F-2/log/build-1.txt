@@ -1,0 +1,1 @@
+I've built the game and its tests, and `bash test/gate.sh` passes all 24 tests in 17 s. The suite was at 169 s, over the two-minute limit, until I made the tests share one browser page and stopped the game redrawing while paused. Nothing is committed and no independent review was run.

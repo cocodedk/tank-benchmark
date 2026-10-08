@@ -1,0 +1,11 @@
+# Tank Duel
+
+A three.js tank game. index.html declares WebMCP tools (document.modelContext):
+
+- describe: reads the whole game state.
+- pause: pauses or resumes real-time play.
+- step: while paused, advances the game by some seconds in 1/60 s steps.
+- place: moves a tank to a spot and heading.
+- fire: fires a shell from a tank.
+- set_ai: switches the computer's driving and firing on or off.
+- reset: starts a new game.

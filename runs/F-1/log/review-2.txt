@@ -1,0 +1,2 @@
+src/sim.js spawns shells inside walls when firing at contact: placing the player at (5.8, 8), heading 0, then firing makes the shell disappear after two steps without reflecting back toward the player.
+src/sim.js checks shell hits only at step endpoints, missing real grazing collisions: firing from (0, 0), heading 0, past a computer at (5.225, 1.449) leaves its health at 100 although the shell crosses its collision circle.

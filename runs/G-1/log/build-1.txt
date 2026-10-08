@@ -1,0 +1,9 @@
+Tank Duel is built and `bash test/gate.sh` passes: 33 tests in about 49 s, under the two-minute limit.
+
+- **Code:** `index.html` loads the game modules in `src/`. Every file is under 200 lines.
+- **Tests:** two Haiku workers wrote them from the spec, separately from the game code. There are new files for the tools, driving, shells and rounds (the computer's AI tests are in the rounds file). I extended `test_smoke.py` to check that the canvas fills the window and the head-up display shows its labels.
+- **Space fires once per press:** holding it down never fires a second shell. The spec says both "holding Space fires one shell" and "a key acts while it is held", and this reading satisfies both.
+- **Not tested:** the explosion and the tank models only render on screen, and no tool reports them, so no test covers them. The one visual check is that the page opens with no console errors.
+- **AI tests use random aim:** the computer's aim is randomly off by up to 4° so that a steady player can beat it. The two AI tests passed both times I ran the suite, but they are not deterministic.
+
+Nothing is committed.

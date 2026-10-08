@@ -1,0 +1,3 @@
+src/sim.js drive resolves tank contact after walls, so placing the player at (-10.2, 8), heading 90, and computer at (-11.4, 10.2), then holding W for five steps pushes the player inside the inner wall.
+src/ai.js discards waypoints within 0.5 units before reaching a clear firing line, leaving the computer permanently stationary without firing when the player is at (0, 12).
+src/sim.js stepShells checks only step endpoints, so a shell fired from (-5, 0), heading 0, passes through the computer's collision circle at (0, 1.449) without causing damage.

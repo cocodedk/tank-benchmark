@@ -1,0 +1,2 @@
+src/ai.js rejects every waypoint when the computer starts inside a wall's inflated planning bounds, so valid placements at computer (-10.3, -8) and player (-5, -8) leave it stationary without firing for 30 seconds.
+src/arena.js rejects the legal wall-contact placement (-10.2, -8) because floating-point rounding makes its computed wall distance slightly less than the tank's radius.

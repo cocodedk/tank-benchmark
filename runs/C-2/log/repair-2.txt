@@ -1,0 +1,6 @@
+I fixed all four rejected defects, and `bash test/gate.sh` now passes 23 tests in 20 s, including new tests for the pinned tank, the computer stuck against a wall, and the grazing shell; the portrait fix has no test.
+
+- **Pushed through the outer wall:** in `resolve` (`src/game.js`), the clamp to the arena edge now runs last. If the moving tank would then overlap the other tank, it stays where it was.
+- **Computer stuck at a wall:** `src/ai.js` now checks paths with a clearance of 1.15, just under the tank radius of 1.2. A tank already touching a wall can therefore drive away from it. The game still stops tanks at a wall's edge, so none enters one.
+- **Grazing hits missed:** `src/shells.js` now checks the whole path a shell covered during the step against each tank, not only where the step ended.
+- **Arena cropped in tall, narrow windows:** on each resize, `src/scene.js` widens the camera's field of view when the window is narrow, so the full 40-unit width stays visible.

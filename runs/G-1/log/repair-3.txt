@@ -1,0 +1,8 @@
+I fixed all three rejected points and added `/llms.txt`; the suite passes (37 tests in 62 s), but the camera change still has no test and I haven't looked at a narrow window.
+
+- **Shell hits** (`hitTank` in `src/sim.js`): a shell's whole path since its last position is now checked against each tank, not just where it ends up. A new test fires from (0, 1.4499) and confirms it hits the tank at (5, 0).
+- **Step durations** (`step` tool in `src/tools.js`): the leftover part of a 1/60 s step now carries over to the next call. Sixty 0.01 s calls now advance the game 0.6 s, the same as one 0.6 s call, and a new test checks this.
+- **Narrow windows** (`fit` in `src/view.js`): the camera's far limit now grows with the distance it backs off, so the arena no longer disappears at 320×1000.
+- **`/llms.txt`**: new at the top of the checkout. It says `/index.html` declares WebMCP tools and gives one line for each of the seven.
+
+Nothing is committed.

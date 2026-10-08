@@ -1,0 +1,156 @@
+<main>
+  <header class="stack">
+    <nav class="lang" aria-label="{{lang_label}}">
+      <a class="lang-switch" href="{{switch_href}}" lang="{{switch_lang}}" hreflang="{{switch_lang}}">{{switch_text}}</a>
+    </nav>
+    <h1>{{h1}}</h1>
+    <p class="lede">{{lede}}</p>
+  </header>
+
+  <section class="verdict" id="verdict" aria-live="polite"></section>
+
+  <section class="stack">
+    <h2>{{h_setups}}</h2>
+    <div class="scroll"><table id="combos"></table></div>
+  </section>
+
+  <section class="stack">
+    <h2>{{h_cost}}</h2>
+    <div class="legend">
+      <span><span class="swatch build"></span>{{legend_build}}</span>
+      <span><span class="swatch repair"></span>{{legend_repair}}</span>
+    </div>
+    <div class="scroll"><svg id="chart" role="img" aria-label="{{chart_label}}"></svg></div>
+  </section>
+
+  <section class="stack">
+    <h2>{{h_play}}</h2>
+    <p>{{play_help}}</p>
+    <div class="grid" id="runs"></div>
+  </section>
+
+  <section class="stack" id="notes">
+    <h2>{{h_notes}}</h2>
+    <ul>{{notes}}</ul>
+  </section>
+
+  <section class="stack">
+    <h2>{{h_method}}</h2>
+    <ul>{{method}}</ul>
+  </section>
+</main>
+
+<footer>
+  <p>{{footer}}</p>
+</footer>
+
+<script>
+const RUNS = /*DATA*/[];
+const T = /*T*/{};
+const money = n => "$" + n.toFixed(2);
+const mean = list => list.reduce((a, b) => a + b, 0) / (list.length || 1);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const fill = (text, values) => Object.entries(values).reduce((s, [k, v]) => s.split("{" + k + "}").join(v), text);
+const step = n => (T.digits ? String(n).replace(/\d/g, d => T.digits[d]) : String(n));
+const word = w => T.words[w] ?? w;
+const byRun = () => [...RUNS].sort((a, b) => a.run.localeCompare(b.run));
+
+function combos() {
+  return Object.keys(T.setups).map(key => {
+    const runs = RUNS.filter(r => r.combo === key);
+    return { combo: key, setup: T.setups[key], runs: runs.map(r => r.run), dollars: runs.map(r => r.cost),
+      mean_dollars: +mean(runs.map(r => r.cost)).toFixed(2), mean_minutes: +mean(runs.map(r => r.minutes)).toFixed(1),
+      repairs: runs.map(r => r.repairs), hidden: runs.map(r => r.hidden + "/" + r.checks),
+      full_score: runs.length > 0 && runs.every(r => r.hidden === r.checks), accepted: runs.filter(r => r.accepted).length,
+      workers: runs.map(r => r.workers), lines: runs.map(r => `${r.code_lines} + ${r.test_lines}`) };
+  }).filter(c => c.runs.length);
+}
+
+function rounds(list) {
+  return list.map((text, i) => {
+    const [state, verdict = "-"] = text.split("/");
+    return fill(T.round, { n: step(i + 1), state: word(state), verdict: word(verdict) });
+  }).join(T.sep);
+}
+
+function verdict() {
+  const all = combos(), full = all.filter(c => c.full_score).sort((a, b) => a.mean_dollars - b.mean_dollars);
+  const today = all.find(c => c.combo === "A"), best = full[0];
+  const el = document.getElementById("verdict");
+  if (!best) { el.innerHTML = `<strong>${esc(T.verdict_none)}</strong>`; return; }
+  el.innerHTML = `<strong>${esc(fill(T.verdict_best, { combo: best.combo, setup: best.setup }))}</strong>
+    <p>${esc(fill(T.verdict_cost, { dollars: money(best.mean_dollars), minutes: best.mean_minutes }))}` +
+    (today && today !== best ? esc(fill(T.verdict_today, { dollars: money(today.mean_dollars), minutes: today.mean_minutes })) : ".") +
+    ` ${esc(fill(T.verdict_count, { full: full.length, all: all.length, checks: RUNS[0].checks }))}</p>`;
+}
+
+function comboTable() {
+  const h = T.table;
+  const head = `<tr><th>${h.setup}</th><th></th><th class="num">${h.dollars}</th><th class="num">${h.minutes}</th><th class="num">${h.repairs}</th><th class="num">${h.workers}</th><th class="num">${h.lines}</th><th>${h.hidden}</th><th>${h.accepted}</th></tr>`;
+  document.getElementById("combos").innerHTML = head + combos().map(c => `<tr>
+    <td><b>${c.combo}</b></td><td>${esc(c.setup)}</td>
+    <td class="num">${money(c.mean_dollars)} <span class="facts">(${c.dollars.map(money).join(", ")})</span></td>
+    <td class="num">${c.mean_minutes}</td><td class="num">${c.repairs.join(", ")}</td><td class="num">${c.workers.join(", ")}</td><td class="num">${c.lines.join(", ")}</td>
+    <td><span class="pill ${c.full_score ? "ok" : "bad"}">${c.hidden.join(", ")}</span></td>
+    <td>${esc(fill(T.of, { a: c.accepted, b: c.runs.length }))}</td></tr>`).join("");
+}
+
+function chart() {
+  const rows = byRun(), most = Math.ceil(Math.max(...rows.map(r => r.cost), 1));
+  const left = 48, width = 640, bar = 18, gap = 10, top = 8, scale = width / most, height = top + rows.length * (bar + gap) + 28;
+  let svg = "";
+  for (let d = 0; d <= most; d += 1) {
+    const x = left + d * scale;
+    svg += `<line x1="${x}" x2="${x}" y1="${top}" y2="${height - 24}" stroke="var(--rule)" />`;
+    svg += `<text class="axis" x="${x}" y="${height - 8}" text-anchor="middle">$${d}</text>`;
+  }
+  rows.forEach((r, i) => {
+    const y = top + i * (bar + gap), b = r.build_cost * scale, p = r.repair_cost * scale;
+    svg += `<text x="0" y="${y + bar - 4}">${r.run}</text>`;
+    svg += `<rect x="${left}" y="${y}" width="${b}" height="${bar}" fill="var(--build)"><title>${esc(fill(T.build_title, { run: r.run, money: money(r.build_cost) }))}</title></rect>`;
+    svg += `<rect x="${left + b}" y="${y}" width="${p}" height="${bar}" fill="var(--repair)"><title>${esc(fill(T.repair_title, { run: r.run, money: money(r.repair_cost) }))}</title></rect>`;
+    svg += `<text x="${left + b + p + 6}" y="${y + bar - 4}">${money(r.cost)}</text>`;
+  });
+  const el = document.getElementById("chart");
+  el.setAttribute("viewBox", `0 0 ${left + width + 60} ${height}`);
+  el.setAttribute("width", left + width + 60);
+  el.innerHTML = svg;
+}
+
+function cards() {
+  document.getElementById("runs").innerHTML = byRun().map(r => `
+    <article class="card">
+      <img src="${T.root}shots/${r.run}.png" width="${r.shot[0]}" height="${r.shot[1]}" loading="lazy" alt="${esc(fill(T.shot_alt, { run: r.run }))}">
+      <div class="body">
+        <h3>${r.run} <a class="play" href="${T.root}games/${r.run}/index.html" target="_blank" rel="noopener">${esc(T.play)}</a></h3>
+        <div>${esc(T.setups[r.combo])}</div>
+        <div class="facts">${esc(fill(T.card_facts, { dollars: money(r.cost), minutes: r.minutes, repairs: r.repairs, workers: r.workers, code: r.code_lines, tests: r.test_lines, hidden: r.hidden, checks: r.checks }))}</div>
+        <div class="facts">${esc(T.rounds_label)} ${esc(rounds(r.rounds))}</div>
+        ${r.findings.length ? `<details><summary>${esc(fill(T.findings, { n: r.findings.length }))}</summary><ul>${r.findings.map(f => `<li>${esc(f)}</li>`).join("")}</ul></details>` : ""}
+        ${r.failed.length ? `<div class="bad">${esc(T.failed)} ${r.failed.map(esc).join(", ")}</div>` : ""}
+      </div>
+    </article>`).join("");
+}
+
+verdict(); comboTable(); chart(); cards();
+
+(async () => {
+  const mc = document.modelContext;
+  if (!mc) return;
+  const tools = [
+    { name: "describe", description: "Says what this page shows: the benchmark, how many runs it holds and which setup won. Read-only.",
+      execute: async () => { const best = combos().filter(c => c.full_score).sort((a, b) => a.mean_dollars - b.mean_dollars)[0];
+        return { ok: true, title: "Tank Duel Benchmark", runs: RUNS.length, setups: combos().length, checks: RUNS[0]?.checks ?? 0,
+          cheapest_full_score: best ? best.combo : null }; } },
+    { name: "list_runs", description: "Lists every run: setup letter, dollars, minutes, repairs, workers started, hidden checks passed and the game's link. Read-only.",
+      execute: async () => ({ ok: true, runs: RUNS.map(r => ({ run: r.run, setup: r.combo, dollars: r.cost, minutes: r.minutes,
+        repairs: r.repairs, workers: r.workers, hidden: r.hidden, checks: r.checks, accepted: r.accepted, game: new URL(`games/${r.run}/index.html`, document.baseURI).href })) }) },
+    { name: "compare_setups", description: "Compares every setup, averaged over its runs: dollars, minutes, repairs and whether every run passed every hidden check. Read-only.",
+      execute: async () => ({ ok: true, setups: combos().map(c => ({ ...c, setup: T.en_setups[c.combo] })) }) },
+  ];
+  for (const tool of tools) {
+    try { await mc.registerTool({ ...tool, inputSchema: { type: "object", properties: {} }, annotations: { readOnlyHint: true } }); }
+    catch { /* one refused tool must not stop the rest */ }
+  }
+})();
+</script>

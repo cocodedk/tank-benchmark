@@ -1,0 +1,11 @@
+I built Tank Duel and its tests, and `bash test/gate.sh` passes: 24 tests ran OK in 34 s. Nothing is committed.
+
+- **Game:** `index.html` plus seven modules under `src/`, each under 200 lines.
+- **Tests:** five files under `test/`, cover all ten "Done when" points.
+
+The suite turned up three problems, all now fixed:
+- **AI stuck behind a wall:** the computer could stop near the point it planned to shoot from but still not see the player, so it never fired. It now only picks firing spots with a wider safety margin (`src/ai.js:19`).
+- **Slow suite:** while paused, the page redrew every frame and each test call waited about 1 s for it. It now redraws only when something changed (`src/main.js`), and the suite went from 103 s to under 35 s.
+- **Banner test:** the test read the banner before the next frame drew it, so it now waits one frame first.
+
+The game was written by one worker and the tests by a different one, but I made the last two fixes myself (one in the game, one in a test), so those changes were not reviewed by anyone else. I didn't check the look of the page myself: no screenshot was taken, so "the scene renders" rests only on the no-console-errors check.

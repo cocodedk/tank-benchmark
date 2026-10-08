@@ -1,0 +1,4 @@
+Both reviewer cases are fixed in `src/game.js`, and the suite passes (26 tests, 32 s). I added one test for each case. Nothing is committed.
+
+- **Tank push-out:** `resolve` pushed the moving tank out of the other one and then clamped it back against the outer wall, which could leave it overlapping. If the tank still overlaps the other one after that, it now stays at its previous position. The stationary tank is never moved. The test is `test_tank_at_the_outer_wall_stops_at_the_other_tank`.
+- **Shell hits:** `updateShells` only checked where the shell ended each tick, so a shell grazing a tank between two ticks passed through. It now checks the whole path the shell travelled in that tick. The test is `test_grazing_shell_is_not_skipped_between_steps`.

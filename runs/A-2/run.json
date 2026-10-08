@@ -1,0 +1,185 @@
+{
+ "run": "A-2",
+ "builder": [
+  "claude-sonnet-5-5",
+  "high"
+ ],
+ "workers": [],
+ "repair": [
+  "claude-sonnet-5-5",
+  "medium"
+ ],
+ "fresh": false,
+ "says": "Sonnet builds alone; Sonnet repairs in the same session (graph-loop today)",
+ "review": [
+  "gpt-6.1-sol",
+  "medium"
+ ],
+ "budget": 10.0,
+ "started": "2026-10-08T12:08:35",
+ "calls": [
+  {
+   "stage": "build",
+   "round": 1,
+   "model": "claude-sonnet-5-5",
+   "effort": "high",
+   "resumed": false,
+   "kind": "success",
+   "error": false,
+   "cost": 1.9010627999999998,
+   "wall_s": 1433,
+   "turns": 76,
+   "session": "c3d47102-46f3-4ff5-ab03-576e5c9c044a",
+   "cache_read_share": 0.964,
+   "by_model": {
+    "claude-sonnet-5-5": 1.901
+   }
+  },
+  {
+   "stage": "repair",
+   "round": 2,
+   "model": "claude-sonnet-5-5",
+   "effort": "medium",
+   "resumed": true,
+   "kind": "success",
+   "error": false,
+   "cost": 2.0811549999999994,
+   "wall_s": 49,
+   "turns": 15,
+   "session": "c3d47102-46f3-4ff5-ab03-576e5c9c044a",
+   "cache_read_share": 0.967,
+   "by_model": {
+    "claude-sonnet-5-5": 2.081
+   }
+  },
+  {
+   "stage": "repair",
+   "round": 3,
+   "model": "claude-sonnet-5-5",
+   "effort": "medium",
+   "resumed": true,
+   "kind": "success",
+   "error": false,
+   "cost": 2.2157635999999994,
+   "wall_s": 63,
+   "turns": 9,
+   "session": "c3d47102-46f3-4ff5-ab03-576e5c9c044a",
+   "cache_read_share": 0.969,
+   "by_model": {
+    "claude-sonnet-5-5": 2.216
+   }
+  }
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "green": true,
+   "suite_s": 35,
+   "review": "REJECT",
+   "findings": [
+    "src/tools.js accepts fire({\"tank\":\"__proto__\"}), creates a shell with invalid coordinates and writes cooldown and shot fields onto Object.prototype instead of returning an error.",
+    "src/sim.js pushes a stationary computer instead of stopping at contact: with AI off, computer at (17,0) and player at (18.8,2) heading 270, five W-held steps displace the computer.",
+    "src/sim.js checks shell collisions only at step endpoints, so firing from the default player position misses a computer at (0.225,1.449), leaving it at 100 health despite the shell touching it between steps."
+   ],
+   "review_s": 184
+  },
+  {
+   "round": 2,
+   "green": true,
+   "suite_s": 18,
+   "review": "REJECT",
+   "findings": [
+    "src/game.js:43 and src/sim.js:44\u201346 let a player at (-10.2,-5.1), heading 0, fire through the inner wall without bouncing: after 0.2 seconds the shell reaches (-5.6,-5.1) with bounces=0.",
+    "src/sim.js:54 ignores exact shell\u2013tank contact because it uses strict < instead of <=: firing along z=0 at a computer tank placed at (0,1.45) leaves its health at 100 despite the shell touching it."
+   ],
+   "review_s": 100
+  },
+  {
+   "round": 3,
+   "green": true,
+   "suite_s": 20,
+   "review": "REJECT",
+   "findings": [
+    "src/sim.js checks wall collisions only at shell endpoints, so firing from (-5.558629, -6.091371) at heading 135 misses a genuine corner contact during the first step and leaves bounces at 0.",
+    "src/sim.js ignores wall overlaps with zero normal velocity: firing from (-10.2, -4.9) at heading 0 sends the shell through the inner wall's edge without registering a bounce.",
+    "src/main.js discards elapsed time beyond 100 ms per frame, so slow frames advance the unpaused game less than real time requires."
+   ],
+   "review_s": 149
+  }
+ ],
+ "now": "finished",
+ "updated": "2026-10-08T12:43:05",
+ "final": {
+  "done": false,
+  "green": true,
+  "review": "REJECT",
+  "repairs": 2,
+  "cost": 6.2,
+  "minutes": 34.2,
+  "diff_lines": 1136,
+  "why": "Fix what the reviewer refused (REJECT): src/sim.js checks wall collisions only at shell endpoints, so firing from (-5.558629, -6.091371) at heading 135 misses a genuine corner contact during the first step and leaves bounces at 0.; src/sim.js ignores wall overlaps with zero normal velocity: firing from (-10.2, -4.9) at heading 0 sends the shell through the inner wall's edge without registering a bounce.; src/main.js discards elapsed time beyond 100 ms per frame, so slow frames advance the unpaused game less than real time requires.",
+  "workers": 0
+ },
+ "hidden": {
+  "passed": 14,
+  "total": 14,
+  "checks": [
+   {
+    "check": "opens_clean",
+    "passed": true
+   },
+   {
+    "check": "lists_the_seven_tools",
+    "passed": true
+   },
+   {
+    "check": "starts_as_the_spec_says",
+    "passed": true
+   },
+   {
+    "check": "w_drives_six_units_a_second",
+    "passed": true
+   },
+   {
+    "check": "a_and_d_turn_opposite_ways",
+    "passed": true
+   },
+   {
+    "check": "space_fires_one_shell",
+    "passed": true
+   },
+   {
+    "check": "walls_stop_a_tank",
+    "passed": true
+   },
+   {
+    "check": "a_shell_hits_for_25",
+    "passed": true
+   },
+   {
+    "check": "a_shell_bounces_once_then_goes",
+    "passed": true
+   },
+   {
+    "check": "a_shell_can_hit_its_own_tank",
+    "passed": true
+   },
+   {
+    "check": "no_second_shot_within_half_a_second",
+    "passed": true
+   },
+   {
+    "check": "four_hits_end_the_round",
+    "passed": true
+   },
+   {
+    "check": "the_computer_fires_and_hits",
+    "passed": true
+   },
+   {
+    "check": "the_computer_seeks_without_entering_walls",
+    "passed": true
+   }
+  ]
+ }
+}

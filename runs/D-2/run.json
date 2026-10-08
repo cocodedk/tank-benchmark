@@ -1,0 +1,189 @@
+{
+ "run": "D-2",
+ "builder": [
+  "claude-sonnet-5-5",
+  "high"
+ ],
+ "workers": [
+  "haiku-worker"
+ ],
+ "repair": [
+  "claude-sonnet-5-5",
+  "medium"
+ ],
+ "fresh": false,
+ "says": "Sonnet builds with a Haiku worker; Sonnet repairs in the same session",
+ "review": [
+  "gpt-6.1-sol",
+  "medium"
+ ],
+ "budget": 10.0,
+ "started": "2026-10-08T12:08:35",
+ "calls": [
+  {
+   "stage": "build",
+   "round": 1,
+   "model": "claude-sonnet-5-5",
+   "effort": "high",
+   "resumed": false,
+   "kind": "success",
+   "error": false,
+   "cost": 1.3411117999999995,
+   "wall_s": 916,
+   "turns": 59,
+   "session": "00b8e4cd-ff66-4644-b7cb-3c4f684ca52f",
+   "cache_read_share": 0.948,
+   "by_model": {
+    "claude-sonnet-5-5": 1.341
+   }
+  },
+  {
+   "stage": "repair",
+   "round": 2,
+   "model": "claude-sonnet-5-5",
+   "effort": "medium",
+   "resumed": true,
+   "kind": "success",
+   "error": false,
+   "cost": 1.5571817999999995,
+   "wall_s": 312,
+   "turns": 18,
+   "session": "00b8e4cd-ff66-4644-b7cb-3c4f684ca52f",
+   "cache_read_share": 0.954,
+   "by_model": {
+    "claude-sonnet-5-5": 1.557
+   }
+  },
+  {
+   "stage": "repair",
+   "round": 3,
+   "model": "claude-sonnet-5-5",
+   "effort": "medium",
+   "resumed": true,
+   "kind": "success",
+   "error": false,
+   "cost": 1.7547883999999996,
+   "wall_s": 73,
+   "turns": 12,
+   "session": "00b8e4cd-ff66-4644-b7cb-3c4f684ca52f",
+   "cache_read_share": 0.961,
+   "by_model": {
+    "claude-sonnet-5-5": 1.755
+   }
+  }
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "green": true,
+   "suite_s": 92,
+   "review": "REJECT",
+   "findings": [
+    "src/tanks.js:13\u201324 lets tank separation push the player inside an inner wall: place computer at (-12,8), player at (-10.2,10) heading 270, then hold W for 0.5 seconds.",
+    "src/shells.js:63 misses grazing hits between steps: firing from (0,0) heading 0 past the computer at (10,1.449) leaves its health at 100 despite contact.",
+    "src/shells.js:29\u201340 falsely bounces corner near-misses: firing from (-10.508147545,6.108147545) heading 315 bounces although the trajectory clears the wall corner by 0.282843 units, exceeding the shell radius.",
+    "src/input.js:19 stops movement when W is released while ArrowUp remains held because both keys share one action boolean.",
+    "src/input.js:14\u201319 and src/sim.js:10\u201311 fire a queued Space press even when Space was released before the paused simulation advances, violating held-key sampling.",
+    "Nonblocking suggestion: src/nav.js:19\u201320 should reuse geom.js's existing clamp function because it already implements the same bounds calculation."
+   ],
+   "review_s": 131
+  },
+  {
+   "round": 2,
+   "green": true,
+   "suite_s": 80,
+   "review": "REJECT",
+   "findings": [
+    "src/shells.js checks wall overlap only at step endpoints, so firing from (-10.389464826, 6.050053570) at heading 315 lets the shell pass within 0.24 units of the wall corner (-9, 5) without bouncing despite its 0.25 radius.",
+    "src/shells.js uses a strict inequality for tank hits, so a shell fired from (0, 0) at heading 0 passes tangentially through a computer tank at (10, 1.45) without damage or removal, contrary to the requirement that touching a tank counts as a hit."
+   ],
+   "review_s": 146
+  },
+  {
+   "round": 3,
+   "green": true,
+   "suite_s": 41,
+   "review": "REJECT",
+   "findings": [
+    "src/input.js and src/sim.js clear Space after one step, so holding it never fires again after the cooldown, contrary to the held-key requirement.",
+    "src/shells.js ignores exact wall tangencies: firing from (-15, 4.75) at heading 0 passes along the inner wall at z=5 with bounces=0 instead of counting the contact."
+   ],
+   "review_s": 131
+  }
+ ],
+ "now": "finished",
+ "updated": "2026-10-08T12:40:59",
+ "final": {
+  "done": false,
+  "green": true,
+  "review": "REJECT",
+  "repairs": 2,
+  "cost": 4.65,
+  "minutes": 32.0,
+  "diff_lines": 1217,
+  "why": "Fix what the reviewer refused (REJECT): src/input.js and src/sim.js clear Space after one step, so holding it never fires again after the cooldown, contrary to the held-key requirement.; src/shells.js ignores exact wall tangencies: firing from (-15, 4.75) at heading 0 passes along the inner wall at z=5 with bounces=0 instead of counting the contact.",
+  "workers": 0
+ },
+ "hidden": {
+  "passed": 14,
+  "total": 14,
+  "checks": [
+   {
+    "check": "opens_clean",
+    "passed": true
+   },
+   {
+    "check": "lists_the_seven_tools",
+    "passed": true
+   },
+   {
+    "check": "starts_as_the_spec_says",
+    "passed": true
+   },
+   {
+    "check": "w_drives_six_units_a_second",
+    "passed": true
+   },
+   {
+    "check": "a_and_d_turn_opposite_ways",
+    "passed": true
+   },
+   {
+    "check": "space_fires_one_shell",
+    "passed": true
+   },
+   {
+    "check": "walls_stop_a_tank",
+    "passed": true
+   },
+   {
+    "check": "a_shell_hits_for_25",
+    "passed": true
+   },
+   {
+    "check": "a_shell_bounces_once_then_goes",
+    "passed": true
+   },
+   {
+    "check": "a_shell_can_hit_its_own_tank",
+    "passed": true
+   },
+   {
+    "check": "no_second_shot_within_half_a_second",
+    "passed": true
+   },
+   {
+    "check": "four_hits_end_the_round",
+    "passed": true
+   },
+   {
+    "check": "the_computer_fires_and_hits",
+    "passed": true
+   },
+   {
+    "check": "the_computer_seeks_without_entering_walls",
+    "passed": true
+   }
+  ]
+ }
+}

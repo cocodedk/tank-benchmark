@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tank Duel</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #111; font-family: sans-serif; color: #fff; }
+  canvas { display: block; }
+  #hud { position: fixed; inset: 0; pointer-events: none; text-shadow: 0 0 3px #000; }
+  .bars { position: absolute; top: 10px; left: 10px; right: 10px; display: flex; justify-content: space-between; gap: 20px; }
+  .bar { width: 240px; } .bar .fill { height: 14px; } .bar .back { background: #333; border: 1px solid #000; }
+  .mid { text-align: center; font-size: 18px; }
+  .help { position: absolute; bottom: 8px; width: 100%; text-align: center; font-size: 13px; opacity: .8; }
+  .banner { position: absolute; top: 40%; width: 100%; text-align: center; font-size: 48px; font-weight: bold; }
+</style>
+<script type="importmap">{ "imports": { "three": "./vendor/three.module.min.js" } }</script>
+</head>
+<body>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+{
+ "run": "F-1",
+ "builder": [
+  "claude-opus-5-5",
+  "high"
+ ],
+ "workers": [
+  "sonnet-worker",
+  "haiku-worker"
+ ],
+ "repair": [
+  "claude-opus-5-5",
+  "medium"
+ ],
+ "fresh": true,
+ "says": "Opus supervises Sonnet and Haiku workers; a fresh Opus session repairs from a brief",
+ "review": [
+  "gpt-6.1-sol",
+  "medium"
+ ],
+ "budget": 10.0,
+ "started": "2026-10-08T12:08:35",
+ "calls": [
+  {
+   "stage": "build",
+   "round": 1,
+   "model": "claude-opus-5-5",
+   "effort": "high",
+   "resumed": false,
+   "kind": "success",
+   "error": false,
+   "cost": 1.4244313999999998,
+   "wall_s": 420,
+   "turns": 14,
+   "session": "0cd42894-c01c-4648-a615-09c22cf64f97",
+   "cache_read_share": 0.82,
+   "by_model": {
+    "claude-opus-5-5": 0.816,
+    "claude-sonnet-5-5": 0.608
+   }
+  },
+  {
+   "stage": "repair",
+   "round": 2,
+   "model": "claude-opus-5-5",
+   "effort": "medium",
+   "resumed": false,
+   "kind": "success",
+   "error": false,
+   "cost": 0.8198932,
+   "wall_s": 333,
+   "turns": 28,
+   "session": "560a7686-e619-488c-904d-16c6453d12a5",
+   "cache_read_share": 0.941,
+   "by_model": {
+    "claude-opus-5-5": 0.82
+   }
+  },
+  {
+   "stage": "repair",
+   "round": 3,
+   "model": "claude-opus-5-5",
+   "effort": "medium",
+   "resumed": false,
+   "kind": "success",
+   "error": false,
+   "cost": 0.46420360000000005,
+   "wall_s": 258,
+   "turns": 11,
+   "session": "66efba4f-3715-4f61-bd68-2acfe3ea819d",
+   "cache_read_share": 0.899,
+   "by_model": {
+    "claude-opus-5-5": 0.464
+   }
+  }
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "green": true,
+   "suite_s": 178,
+   "review": "REJECT",
+   "findings": [
+    "src/sim.js settle() permits tank overlap near walls: with AI off, computer at (17,0) and player at (18.8,-1.6) heading 90, holding W for 2 seconds leaves their centres 2.291 units apart instead of at least 2.4.",
+    "src/sim.js moveShell() reflects the wrong velocity component at inner-wall corners: firing from (6.8,1) heading 90 leaves the shell travelling forward after its first contact and removes it on the next step against the same wall.",
+    "The gate passes all 26 tests but takes 135.058 seconds, exceeding the repository's two-minute suite limit."
+   ],
+   "review_s": 182
+  },
+  {
+   "round": 2,
+   "green": true,
+   "suite_s": 63,
+   "review": "REJECT",
+   "findings": [
+    "src/sim.js spawns shells inside walls when firing at contact: placing the player at (5.8, 8), heading 0, then firing makes the shell disappear after two steps without reflecting back toward the player.",
+    "src/sim.js checks shell hits only at step endpoints, missing real grazing collisions: firing from (0, 0), heading 0, past a computer at (5.225, 1.449) leaves its health at 100 although the shell crosses its collision circle."
+   ],
+   "review_s": 128
+  },
+  {
+   "round": 3,
+   "green": true,
+   "suite_s": 69,
+   "review": "REJECT",
+   "findings": [
+    "src/sim.js moveShell reflects both velocity components near inner-wall corners incorrectly: firing from (5.15, 4.1) at heading 20 reverses x velocity even though the contact normal requires it to remain positive.",
+    "src/sim.js moveShell ignores exact tangential contact because it uses a strict inequality: firing from (0, 0) at heading 0 past a computer at (5.225, 1.45) leaves its health at 100 instead of 75."
+   ],
+   "review_s": 126
+  }
+ ],
+ "now": "finished",
+ "updated": "2026-10-08T12:38:29",
+ "final": {
+  "done": false,
+  "green": true,
+  "review": "REJECT",
+  "repairs": 2,
+  "cost": 2.71,
+  "minutes": 29.3,
+  "diff_lines": 895,
+  "why": "Fix what the reviewer refused (REJECT): src/sim.js moveShell reflects both velocity components near inner-wall corners incorrectly: firing from (5.15, 4.1) at heading 20 reverses x velocity even though the contact normal requires it to remain positive.; src/sim.js moveShell ignores exact tangential contact because it uses a strict inequality: firing from (0, 0) at heading 0 past a computer at (5.225, 1.45) leaves its health at 100 instead of 75.",
+  "workers": 2
+ },
+ "hidden": {
+  "passed": 14,
+  "total": 14,
+  "checks": [
+   {
+    "check": "opens_clean",
+    "passed": true
+   },
+   {
+    "check": "lists_the_seven_tools",
+    "passed": true
+   },
+   {
+    "check": "starts_as_the_spec_says",
+    "passed": true
+   },
+   {
+    "check": "w_drives_six_units_a_second",
+    "passed": true
+   },
+   {
+    "check": "a_and_d_turn_opposite_ways",
+    "passed": true
+   },
+   {
+    "check": "space_fires_one_shell",
+    "passed": true
+   },
+   {
+    "check": "walls_stop_a_tank",
+    "passed": true
+   },
+   {
+    "check": "a_shell_hits_for_25",
+    "passed": true
+   },
+   {
+    "check": "a_shell_bounces_once_then_goes",
+    "passed": true
+   },
+   {
+    "check": "a_shell_can_hit_its_own_tank",
+    "passed": true
+   },
+   {
+    "check": "no_second_shot_within_half_a_second",
+    "passed": true
+   },
+   {
+    "check": "four_hits_end_the_round",
+    "passed": true
+   },
+   {
+    "check": "the_computer_fires_and_hits",
+    "passed": true
+   },
+   {
+    "check": "the_computer_seeks_without_entering_walls",
+    "passed": true
+   }
+  ]
+ }
+}

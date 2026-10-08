@@ -1,0 +1,5 @@
+I fixed all three rejected defects and added a test for each; `bash test/gate.sh` passes 26 tests in about 10 s.
+
+- **Computer stuck short of a hidden player:** in `src/ai.js`, a waypoint now counts only if its line to you clears every wall by 1 unit, not 0.25. Before, the computer stopped near a waypoint but slightly off it, its own line was still blocked, and it never moved again. Now it finds and hits a player at (-10.2, 8) within 40 s.
+- **Exact touch ignored:** `src/shells.js` now counts a shell exactly at contact distance (1.45) as a hit.
+- **Wrong bounce at a wall corner:** `src/shells.js` now reflects the velocity across the contact direction instead of flipping just one part. A wall face behaves as before, and a shell fired straight into a corner comes back the way it came; the test confirms it hits its own tank.

@@ -1,0 +1,1 @@
+I fixed both bugs the reviewer refused in `src/sim.js` and added a test for each in `test/test_shells.py`; the full suite passes, 30 tests in 87 s. A shell fired into a wall the tank is touching now gets pushed out and bounced back, and it hits its own tank; tank hits are now checked along the shell's whole path for each step, so a shell that just grazes a tank still counts.

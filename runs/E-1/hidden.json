@@ -1,0 +1,62 @@
+{
+ "passed": 14,
+ "total": 14,
+ "checks": [
+  {
+   "check": "opens_clean",
+   "passed": true
+  },
+  {
+   "check": "lists_the_seven_tools",
+   "passed": true
+  },
+  {
+   "check": "starts_as_the_spec_says",
+   "passed": true
+  },
+  {
+   "check": "w_drives_six_units_a_second",
+   "passed": true
+  },
+  {
+   "check": "a_and_d_turn_opposite_ways",
+   "passed": true
+  },
+  {
+   "check": "space_fires_one_shell",
+   "passed": true
+  },
+  {
+   "check": "walls_stop_a_tank",
+   "passed": true
+  },
+  {
+   "check": "a_shell_hits_for_25",
+   "passed": true
+  },
+  {
+   "check": "a_shell_bounces_once_then_goes",
+   "passed": true
+  },
+  {
+   "check": "a_shell_can_hit_its_own_tank",
+   "passed": true
+  },
+  {
+   "check": "no_second_shot_within_half_a_second",
+   "passed": true
+  },
+  {
+   "check": "four_hits_end_the_round",
+   "passed": true
+  },
+  {
+   "check": "the_computer_fires_and_hits",
+   "passed": true
+  },
+  {
+   "check": "the_computer_seeks_without_entering_walls",
+   "passed": true
+  }
+ ]
+}

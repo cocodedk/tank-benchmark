@@ -1,0 +1,4 @@
+src/sim.js samples shell collisions instead of sweeping: firing from (0, 1.4499) toward a tank at (5, 0) misses despite touching its collision circle.
+src/view.js moves the camera beyond its fixed far plane at a 320×1000 viewport, making the arena and tanks disappear.
+src/tools.js rounds each step duration independently, so sixty 0.01-second calls advance one second while a single 0.6-second call advances only 0.6 seconds.
+Non-blocking repository-rule finding: the site lacks the required /llms.txt describing its WebMCP tools.

@@ -1,0 +1,7 @@
+The game is built and `bash test/gate.sh` passes all 27 tests in about 60 s, covering every "Done when" item; nothing is committed.
+
+- **Code:** `index.html` plus seven modules under `src/`. The largest file is `src/game.js` at 151 lines.
+- **Tests:** five new files in `test/` (page, driving, shells, rounds, AI) share a helper, `test/base.py`, that opens one browser per test file.
+- **Space:** a press fires once, however long it is held. That's how I read "holding Space fires one shell", so to fire again you release Space and press it.
+- **Speed:** the page now redraws only when something on screen changes. Before that change the suite took 127 s, over the two-minute limit.
+- **Leftover file:** a screenshot I took to check the picture is still at `test/__pycache__/shot.png`. My shell isn't allowed to delete files, so please remove it.

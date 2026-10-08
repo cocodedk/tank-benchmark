@@ -1,0 +1,177 @@
+{
+ "run": "A-1",
+ "builder": [
+  "claude-sonnet-5-5",
+  "high"
+ ],
+ "workers": [],
+ "repair": [
+  "claude-sonnet-5-5",
+  "medium"
+ ],
+ "fresh": false,
+ "says": "Sonnet builds alone; Sonnet repairs in the same session (graph-loop today)",
+ "review": [
+  "gpt-6.1-sol",
+  "medium"
+ ],
+ "budget": 10.0,
+ "started": "2026-10-08T12:08:35",
+ "calls": [
+  {
+   "stage": "build",
+   "round": 1,
+   "model": "claude-sonnet-5-5",
+   "effort": "high",
+   "resumed": false,
+   "kind": "success",
+   "error": false,
+   "cost": 1.7256729999999996,
+   "wall_s": 1123,
+   "turns": 84,
+   "session": "875fceeb-b678-401a-8575-49083c97b0ca",
+   "cache_read_share": 0.948,
+   "by_model": {
+    "claude-sonnet-5-5": 1.726
+   }
+  },
+  {
+   "stage": "repair",
+   "round": 2,
+   "model": "claude-sonnet-5-5",
+   "effort": "medium",
+   "resumed": true,
+   "kind": "success",
+   "error": false,
+   "cost": 1.8804611999999996,
+   "wall_s": 83,
+   "turns": 9,
+   "session": "875fceeb-b678-401a-8575-49083c97b0ca",
+   "cache_read_share": 0.953,
+   "by_model": {
+    "claude-sonnet-5-5": 1.88
+   }
+  },
+  {
+   "stage": "repair",
+   "round": 3,
+   "model": "claude-sonnet-5-5",
+   "effort": "medium",
+   "resumed": true,
+   "kind": "success",
+   "error": false,
+   "cost": 1.9543737999999997,
+   "wall_s": 42,
+   "turns": 5,
+   "session": "875fceeb-b678-401a-8575-49083c97b0ca",
+   "cache_read_share": 0.957,
+   "by_model": {
+    "claude-sonnet-5-5": 1.954
+   }
+  }
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "green": true,
+   "suite_s": 24,
+   "review": "REJECT",
+   "findings": [
+    "src/view.js clips the arena at 1280\u00d7800, with both corners at z=15 outside the camera frame, violating the requirement to show all of it.",
+    "src/tank.js allows tank overlap after wall correction: placing the computer at (-12,4.6) and the player at (-9.681778,3.978834), heading 90, then driving forward leaves their centres about 2.391 units apart instead of at least 2.4.",
+    "src/shells.js checks only shell endpoints and misses grazing hits: firing from (0,0), heading 0, past a tank at (5.225,1.449) leaves its health at 100 despite the shell touching it between steps."
+   ],
+   "review_s": 124
+  },
+  {
+   "round": 2,
+   "green": true,
+   "suite_s": 29,
+   "review": "REJECT",
+   "findings": [
+    "src/shells.js ignores exact tank contact because it uses < instead of <=: with AI disabled, firing from (0, 0) at heading 0 past a tank at (5, 1.45) leaves its health at 100 instead of 75."
+   ],
+   "review_s": 151
+  },
+  {
+   "round": 3,
+   "green": false,
+   "suite_s": 20
+  }
+ ],
+ "now": "finished",
+ "updated": "2026-10-08T12:35:53",
+ "final": {
+  "done": false,
+  "green": false,
+  "review": null,
+  "repairs": 2,
+  "cost": 5.56,
+  "minutes": 26.6,
+  "diff_lines": 1062,
+  "why": "Fix the red suite: the failure is shown below. Check your fix with the failing test; the loop runs the full suite after you.\n...............F..................\n======================================================================\nFAIL: test_the_computer_can_win_a_round (test_rounds.RoundsTest.test_the_computer_can_win_a_round)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"test/test_rounds.py\", line 30, in test_the_computer_can_win_a_round\n    self.assertIn(\"The computer wins the round\", g.page.inner_text(\"body\"))\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: 'The computer wins the round' not found in 'You\\nComputer\\nScore 0 : 0 \u00b7 Round 1\\nW/\u2191 forward \u00b7 S/\u2193 back \u00b7 A/\u2190 D/\u2192 turn \u00b7 Space fire'\n\n----------------------------------------------------------------------\nRan 34 tests in 18.239s\n\nFAILED (failures=1)\n",
+  "workers": 0
+ },
+ "hidden": {
+  "passed": 14,
+  "total": 14,
+  "checks": [
+   {
+    "check": "opens_clean",
+    "passed": true
+   },
+   {
+    "check": "lists_the_seven_tools",
+    "passed": true
+   },
+   {
+    "check": "starts_as_the_spec_says",
+    "passed": true
+   },
+   {
+    "check": "w_drives_six_units_a_second",
+    "passed": true
+   },
+   {
+    "check": "a_and_d_turn_opposite_ways",
+    "passed": true
+   },
+   {
+    "check": "space_fires_one_shell",
+    "passed": true
+   },
+   {
+    "check": "walls_stop_a_tank",
+    "passed": true
+   },
+   {
+    "check": "a_shell_hits_for_25",
+    "passed": true
+   },
+   {
+    "check": "a_shell_bounces_once_then_goes",
+    "passed": true
+   },
+   {
+    "check": "a_shell_can_hit_its_own_tank",
+    "passed": true
+   },
+   {
+    "check": "no_second_shot_within_half_a_second",
+    "passed": true
+   },
+   {
+    "check": "four_hits_end_the_round",
+    "passed": true
+   },
+   {
+    "check": "the_computer_fires_and_hits",
+    "passed": true
+   },
+   {
+    "check": "the_computer_seeks_without_entering_walls",
+    "passed": true
+   }
+  ]
+ }
+}

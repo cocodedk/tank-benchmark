@@ -1,0 +1,3 @@
+src/game.js:37 and src/world.js:23–39 allow firing from (-10.200001, 8), heading 0, to embed a shell inside an inner wall and delete it on the next step instead of bouncing it back; no test covers this case.
+src/render.js:67–70 does not reframe the camera when resizing, so at 600×800 both starting tank centres lie outside the viewport, violating the requirement to show the whole arena.
+src/game.js:49–51 adds tank-to-tank driving collision behavior without tests; the place-tool overlap tests do not exercise it.

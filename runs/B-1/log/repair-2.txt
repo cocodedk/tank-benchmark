@@ -1,0 +1,7 @@
+All three code defects are fixed and the suite passes: 34 tests in 42 s. I didn't change anything for the read-only uv cache.
+
+- **Shots:** `shots` is now a per-game count (`s.shots`) that `fire` increments and `snapshot` reports, so it no longer resets each round.
+- **Tank overlap:** if the wall correction pushes a tank back into the other tank, `move` in `src/sim.js` now leaves it where it started. The reviewer's pinned-at-the-wall case is now a test.
+- **Corner bounces:** `src/shells.js` now detects wall contact with `pushOut` from `collide.js`, so a shell only bounces when it actually touches the wall.
+- **New tests:** `test/test_more.py` adds reverse driving, arrow keys, tank-to-tank contact, the pinned-tank case, an inner-wall bounce, a near-corner shell that must not bounce and shells passing through each other. `test/test_round.py` now also asserts that `shots` carries over into round 2.
+- **uv cache:** `test/gate.sh` still uses the default uv cache. The failure came from the reviewer's read-only environment, which I can't reproduce here. Say if you want a cache-directory override added.

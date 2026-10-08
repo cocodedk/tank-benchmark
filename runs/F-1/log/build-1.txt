@@ -1,0 +1,7 @@
+The game and its tests are in place, and `bash test/gate.sh` passes: 26 tests in 103 s, which is close to the two-minute limit.
+
+- **Game:** `index.html` and `llms.txt` at the top, and six modules in `src/`. The longest file is `src/sim.js` at 112 lines.
+- **Tests:** 24 new tests in `test/test_tools.py`, `test/test_driving.py`, `test/test_shells.py` and `test/test_ai.py`, plus the two in the existing smoke test. A separate agent wrote them from the spec, so the agent that built the game did not grade it.
+- **Not checked:** nobody looked at a screenshot, because the subagents could not run Bash and my shell can't run one. From the camera maths, the whole arena should just fit in a 1280×800 window. The smoke test confirms the page loads with no console errors.
+
+Nothing is committed.

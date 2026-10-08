@@ -1,0 +1,1 @@
+src/game.js fly() checks only shell positions at tick boundaries, so a shot from (0, 0) heading 0 passes through a tank at (5.225, 1.449) without damaging it; collision detection must cover the distance travelled between ticks.

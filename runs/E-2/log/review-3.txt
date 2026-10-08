@@ -1,0 +1,1 @@
+src/game.js:66 excludes exact shell–tank tangency: with AI off, computer at (0,0) and player at (-5,1.45) heading 0, firing then stepping 1 second leaves computer health at 100 and the shell alive, violating the contact requirement despite all 24 gate tests passing.

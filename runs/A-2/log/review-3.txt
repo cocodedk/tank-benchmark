@@ -1,0 +1,3 @@
+src/sim.js checks wall collisions only at shell endpoints, so firing from (-5.558629, -6.091371) at heading 135 misses a genuine corner contact during the first step and leaves bounces at 0.
+src/sim.js ignores wall overlaps with zero normal velocity: firing from (-10.2, -4.9) at heading 0 sends the shell through the inner wall's edge without registering a bounce.
+src/main.js discards elapsed time beyond 100 ms per frame, so slow frames advance the unpaused game less than real time requires.

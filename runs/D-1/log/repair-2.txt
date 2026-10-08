@@ -1,0 +1,6 @@
+All four reviewer findings are fixed, and `bash test/gate.sh` passes (33 tests, 22 s).
+
+- **Tank separation** (`src/tank.js`): `resolve` now repeats the tank and wall pushes. If a tank is still pinned between the other tank and a wall, it stays where the step began. A new test for the reviewer's scenario passes.
+- **Shell hits** (`src/shells.js`): a shell now hits a tank if its path over the step passes within 1.45, not only if its end point does. A new test with the computer at z = 1.448 passes.
+- **Shots count** (`src/game.js`): `shots` now carries across rounds and clears only on `reset`. The rounds test now checks the count is 4 in round 2.
+- **Held keys** (`src/main.js`): an action stays on while any key mapped to it is down. A new test holds W and ArrowUp, releases W, and the tank still moves 6 units in 1 s.

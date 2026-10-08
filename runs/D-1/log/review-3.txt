@@ -1,0 +1,1 @@
+src/collide.js excludes exact wall contact with `d >= r`: placing the player at (-12, -11.25), heading 0, then firing and stepping 0.5 seconds lets the shell graze the inner wall with bounces still 0, violating the first-contact bounce requirement.

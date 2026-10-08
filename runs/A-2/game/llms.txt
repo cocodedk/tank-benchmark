@@ -1,0 +1,13 @@
+# Tank Duel
+
+A three.js tank game. `index.html` declares WebMCP tools (`document.modelContext.registerTool`) so an agent can play and test it.
+
+## WebMCP tools (declared by index.html, in src/tools.js)
+
+- `describe`: reads the game (arena, walls, tanks, shells, score, round, state, paused, ai).
+- `pause`: `{"paused": true}` pauses or resumes real-time play.
+- `step`: `{"seconds": 1.5}` advances a paused game in 1/60 s steps, reading the keys held now.
+- `place`: `{"tank": "player", "x": 0, "z": 0, "heading": 90}` moves a tank; refuses walls, the other tank and spots outside the arena.
+- `fire`: `{"tank": "player"}` fires, as Space does.
+- `set_ai`: `{"enabled": false}` switches the computer's driving and firing on or off.
+- `reset`: starts a new game (round 1, score 0 to 0).

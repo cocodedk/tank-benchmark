@@ -1,0 +1,9 @@
+I fixed all three issues the reviewer raised, and `bash test/gate.sh` passes with 33 tests in 33 s. I didn't look at the page at 1280×800 myself; the camera fix is checked by calculation only.
+
+- **Camera (`src/view.js`):** the camera now sits farther back (`max(48, 70/aspect)`). By my calculation the near wall (z=15.5) was about 25° off-axis, outside the 22.5° half-angle, and is now about 17°.
+- **Tank overlap (`src/tank.js`):** `drive` now repeats the wall push-out and the other-tank push-out up to four times. If the tank is still wedged between a wall and the other tank, it stays at its previous position instead of overlapping.
+- **Grazing shells (`src/shells.js`):** the tank hit test now measures the distance from the tank to the shell's path over the step, not just its end point.
+
+I couldn't use the reviewer's exact wedge setup, because `place` refuses the player at (-9.68, 3.98): that spot is inside the wall's clearance. The new wedge test uses a similar setup that `place` accepts. It checks the gap between the tanks stays at least 2.4, but I haven't confirmed it fails against the old `drive` code. The grazing test uses the reviewer's setup.
+
+The stray files I wrote to `~/lean-tmp/tank-bench/` earlier are still there; I couldn't delete them.

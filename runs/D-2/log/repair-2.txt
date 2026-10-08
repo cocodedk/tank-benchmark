@@ -1,0 +1,10 @@
+All five rejected points and the `nav.js` suggestion are fixed, and `bash test/gate.sh` passes (22 tests, 100 s). Nothing is committed. Timing varies a lot between runs: my last two runs took 137 s (25 tests) and 100 s. The 2-minute limit is tight, so I folded the new checks into existing tests to save browser launches.
+
+- **Squeeze into a wall (`src/tanks.js`):** a move that leaves no legal spot between wall and tank now leaves the tank where it was.
+- **Grazing hits (`src/shells.js`):** the hit test now checks the shell's path across the step, not just where it ends up.
+- **Corner near-misses (`src/shells.js`, `src/geom.js`):** a shell now bounces only when it is within its radius of the wall, using the rounded distance to the wall's corner. It no longer uses the square box around the wall.
+- **Two keys per action (`src/input.js`):** each action is held while any of its keys is held. Releasing W while ArrowUp is down keeps the tank driving.
+- **Space (`src/input.js`):** releasing Space before the next step cancels the queued shot. A tap shorter than one step in real-time play can therefore be missed.
+- **`clamp` in `nav.js`:** it now uses the one in `geom.js`.
+
+I added regression tests for the squeeze, the grazing shell, the corner near-miss, the two-key release and the early Space release. `test_zcount.py` now expects 22.

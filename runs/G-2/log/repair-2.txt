@@ -1,0 +1,5 @@
+I fixed all three problems the reviewer rejected, and `bash test/gate.sh` passes: 31 tests in 56 s.
+
+- **Grazing shells:** `hit()` in `src/sim.js` now checks the whole path a shell covers in a step, not only where it ends up. The shell at z=1.449 now takes 25 from the computer. A new test covers it.
+- **Wrong wall face:** `fly()` now reflects a shell off the face of an inner wall it went through most recently, judged by which way it is moving. In the (-10.2, 10) case the muzzle starts inside the wall, so the shell bounces off the west face. It then lands 0.95 from its own tank, well within the 1.45 contact distance, so it hits that tank straight away. The new test checks that the player loses 25 health; before the fix the shell skipped to z=8 and hit nothing.
+- **Camera:** the camera's far limit in `src/view.js` now grows with its distance, so a 200×1200 window still shows the arena. No test checks this.

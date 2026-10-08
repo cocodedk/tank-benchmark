@@ -1,0 +1,10 @@
+All four findings are fixed, and `bash test/gate.sh` passes with 41 tests in 23 s.
+
+- **Tangent hits** (`src/shells.js`): a shell that just touches a tank now hits it. Your player (-5,0) and computer (0,1.45) case takes 25 health.
+- **Wall contacts** (`src/shells.js`): a shell now checks for a wall at the start of each step as well as the end. A shell moving along a wall face also counts as touching it. Your (-10.8,-11.1) case records its first bounce.
+- **Fractional time** (`src/tools.js`, `src/game.js`): `step` now carries part-steps over to the next call, and `reset` clears the carry. A hundred 0.01 s steps with W held move the tank 6 units.
+- **New tests:**
+  - **Resize:** the canvas follows the window size.
+  - **Explosion:** an orange explosion appears in a screenshot after a hit and is gone 0.6 s later.
+  - **Blur:** a blur event releases held keys.
+  - **No WebMCP:** the page loads clean with the HUD and canvas when `document.modelContext` is absent.

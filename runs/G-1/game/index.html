@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tank Duel</title>
+  <link rel="icon" href="data:,">
+  <script type="importmap">
+    {"imports": {"three": "./vendor/three.module.min.js"}}
+  </script>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #000; font-family: system-ui, sans-serif; }
+    #game { position: fixed; inset: 0; width: 100vw; height: 100vh; display: block; }
+    #hud { position: absolute; inset: 0; pointer-events: none; color: #fff; text-shadow: 0 1px 2px #000; }
+    .bar { position: absolute; top: 16px; width: 260px; }
+    #bar-player { left: 16px; }
+    #bar-computer { right: 16px; }
+    .label { font-size: 14px; margin-bottom: 4px; }
+    .track { height: 14px; background: rgba(0, 0, 0, 0.5); border: 2px solid #222; border-radius: 4px; overflow: hidden; }
+    .fill { height: 100%; width: 100%; }
+    #hp-player { background: #2f6fde; }
+    #hp-computer { background: #d23c3c; }
+    #score { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); font-size: 20px; font-weight: bold; white-space: nowrap; }
+    #round { position: absolute; top: 46px; left: 50%; transform: translateX(-50%); font-size: 14px; white-space: nowrap; }
+    #controls { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); font-size: 14px; white-space: nowrap; }
+    #banner { position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%); font-size: 48px; font-weight: bold; padding: 16px 28px; border-radius: 8px; background: rgba(0, 0, 0, 0.55); white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <div id="hud">
+    <div id="bar-player" class="bar">
+      <div class="label">You</div>
+      <div class="track"><div id="hp-player" class="fill"></div></div>
+    </div>
+    <div id="bar-computer" class="bar">
+      <div class="label" style="text-align: right">Computer</div>
+      <div class="track"><div id="hp-computer" class="fill"></div></div>
+    </div>
+    <span id="score"></span>
+    <span id="round"></span>
+    <div id="controls">W/↑ forward · S/↓ back · A/← D/→ turn · Space fire</div>
+    <div id="banner" style="display: none"></div>
+  </div>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

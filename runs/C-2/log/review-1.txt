@@ -1,0 +1,4 @@
+src/game.js resolve pushes tanks through the outer wall after clamping: with player at (18.8,0), heading 90, and computer at (17,1.6), one forward step puts the player at x=18.8437.
+src/ai.js stalls indefinitely at legal wall-contact positions: with computer at (-10.2,8) and player at (0,8), its inflated clearance check rejects every movement target, producing no movement or shots within 30 seconds.
+src/shells.js misses grazing hits by checking only step endpoints: firing from (-5,0), heading 0, past a computer at (0.225,1.449) leaves its health unchanged despite intersecting its collision circle.
+src/scene.js crops the arena at portrait window sizes such as 800×1280 because resize changes the camera aspect without adjusting its framing, violating the requirement to show the whole arena.

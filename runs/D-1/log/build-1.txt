@@ -1,0 +1,7 @@
+The game is built and `bash test/gate.sh` passes: 30 tests, OK, in 72 s. I haven't looked at the page by eye, so the camera framing and tank look are untested beyond a check that the canvas fills the window.
+
+- **Layout:** `index.html` and `src/`, with each file well under 200 lines. Nothing is committed.
+- **Tests:** there are tests for each "Done when" item: tools, movement and walls, shells, rounds and HUD, and the AI. The suite ran at 361 s before I made the page redraw only after a tool call while paused. `test/helpers.py` is a small shared base class for them.
+- **Space fires on the key going down.** Holding it fires one shell, which is how I read "holding Space fires one shell". Auto-repeat while held would give two shells in a 1 s `step`.
+- **AI pathfinding:** the computer finds its way round walls by pathfinding on a grid.
+- **AI aim:** it waits 0.3 s after it sees you and aims at where you are now, so a moving player can dodge.

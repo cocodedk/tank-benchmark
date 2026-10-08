@@ -1,0 +1,4 @@
+src/ai.js:31-36 checks visibility toward the player's centre instead of the actual firing heading, so a stationary player at (-15,-6) remains unharmed after 60 seconds while the computer repeatedly shoots into an inner wall.
+src/game.js:90-94 checks only shell endpoints against walls, so firing from (-8.049759197546795,-3.6102408024532053) at heading 315 passes through an inner-wall corner without bouncing.
+src/game.js:84 excludes exact contact, so firing from (-5,1.45) at heading 0 past a computer at (0,0) leaves its health at 100 although the shell touches it.
+src/tools.js:31 rounds each step duration independently, so 100 valid calls with seconds=0.01 advance 1.667 seconds and move a forward-driving tank 10 units instead of the requested 1 second and 6 units.

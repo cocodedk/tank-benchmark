@@ -1,0 +1,1 @@
+I've built Tank Duel and its tests, and `bash test/gate.sh` passes all 20 tests in about 81 s. The game code is split into small modules under `src/`, and the new tests are `test/test_tools.py`, `test/test_play.py` and `test/test_ai.py`, which share a setup file, `test/game_case.py`; I haven't viewed the game in a browser or taken a screenshot.

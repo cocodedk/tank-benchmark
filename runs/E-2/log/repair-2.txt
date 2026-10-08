@@ -1,0 +1,5 @@
+I fixed all three rejected points, and `bash test/gate.sh` now passes all 23 tests in 88 s.
+
+- **Shell fired into a wall:** a shell that starts inside an inner wall now bounces back out through the nearest face instead of being deleted. The fix is in `src/world.js`. The new test fires from (−10.200001, 8), and the shell comes straight back and hits its own tank for 25. Under the old code the shell would have vanished and health stayed at 100; I didn't run the test against the old code to confirm it fails there.
+- **Camera on resize:** on narrow windows the camera now widens its view so the whole arena stays in frame. The fix is in `src/render.js`. A new test checks that all four arena corners stay on screen at 1280×800, 600×800, 400×900 and 1600×500.
+- **Tanks meeting:** a new test drives your tank into the computer's. It stops at 2.4 units, centre to centre, then slides round it without overlapping or pushing it.

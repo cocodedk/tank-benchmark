@@ -1,0 +1,2 @@
+src/game.js:43 and src/sim.js:44–46 let a player at (-10.2,-5.1), heading 0, fire through the inner wall without bouncing: after 0.2 seconds the shell reaches (-5.6,-5.1) with bounces=0.
+src/sim.js:54 ignores exact shell–tank contact because it uses strict < instead of <=: firing along z=0 at a computer tank placed at (0,1.45) leaves its health at 100 despite the shell touching it.

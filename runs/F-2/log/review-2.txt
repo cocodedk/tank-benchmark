@@ -1,0 +1,5 @@
+src/sim.js:94 misses touching hits: firing from (-5,1.45) toward a tank at (0,0) leaves its health at 100 because contact uses < instead of <=.
+src/sim.js:73 checks wall contact only at step endpoints, so firing from (2.973027,8.715846) at heading 315 passes within 0.22 units of corner (7,5) without bouncing despite the shell’s 0.25 radius.
+src/sim.js:112 leaves the game in round_over after exactly two seconds because floating-point subtraction leaves a positive timer, delaying the next round until step 121.
+Nonblocking: add the /llms.txt tool discovery document required by the supplied page rules.
+Nonblocking: assert the expected 28-test count as required by the supplied testing rules.

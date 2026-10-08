@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tank Duel</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #101820; font: 14px sans-serif; color: #fff; }
+  canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+  #hud { position: fixed; top: 8px; left: 0; right: 0; text-align: center; pointer-events: none; text-shadow: 0 1px 2px #000; }
+  .bars { display: flex; justify-content: center; gap: 24px; align-items: center; }
+  .bar { display: inline-block; width: 160px; height: 12px; background: #333; border: 1px solid #ccc; vertical-align: middle; }
+  .bar i { display: block; height: 100%; }
+  #you-bar { background: #2a6fdb; } #computer-bar { background: #d63a3a; }
+  #banner { position: fixed; top: 40%; left: 0; right: 0; text-align: center; font-size: 48px; font-weight: bold; text-shadow: 0 2px 6px #000; }
+  #banner[hidden] { display: none; }
+</style>
+<script type="importmap">{"imports": {"three": "./vendor/three.module.min.js"}}</script>
+</head>
+<body>
+<canvas id="game"></canvas>
+<div id="hud">
+  <div class="bars">
+    <span>You <span class="bar"><i id="you-bar" style="width:100%"></i></span></span>
+    <span id="score">0 : 0</span> <span id="round">Round 1</span>
+    <span>Computer <span class="bar"><i id="computer-bar" style="width:100%"></i></span></span>
+  </div>
+  <div>W/S or Up/Down drive, A/D or Left/Right turn, Space fires</div>
+</div>
+<div id="banner" hidden></div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

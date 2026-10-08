@@ -1,0 +1,2 @@
+src/shells.js checks wall overlap only at step endpoints, so firing from (-10.389464826, 6.050053570) at heading 315 lets the shell pass within 0.24 units of the wall corner (-9, 5) without bouncing despite its 0.25 radius.
+src/shells.js uses a strict inequality for tank hits, so a shell fired from (0, 0) at heading 0 passes tangentially through a computer tank at (10, 1.45) without damage or removal, contrary to the requirement that touching a tank counts as a hit.

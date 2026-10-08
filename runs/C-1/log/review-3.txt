@@ -1,0 +1,3 @@
+src/geom.js pushOut ignores exact wall contact: firing from (-14, 4.75) heading 0 passes tangentially along the inner wall with bounces remaining 0.
+src/tools.js coerces invalid inputs to {}, so reset([]) resets the game and returns ok:true instead of the required error.
+src/tools.js rounds each step duration independently, so 100 calls requesting 0.01 seconds with W held move the tank 10 units instead of the required 6 units over one second.

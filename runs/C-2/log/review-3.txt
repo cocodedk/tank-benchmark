@@ -1,0 +1,2 @@
+src/ai.js pickTarget strands the computer behind a wall: with player at (-10.2, 8) and computer at (-5.8, 8), it stops at (-4.0849, 8.2088) and neither moves nor fires through 90 seconds, violating Done when 9.
+src/shells.js checks wall overlap only at step endpoints, allowing a shell fired from (-10.7493821807, -6.3972429996) at heading 45 to pass within 0.249 units of corner (-9, -5) without bouncing, despite its 0.25 radius; the passing 26-test suite misses this collision.

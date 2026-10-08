@@ -1,0 +1,5 @@
+src/sim.js resets cumulative shots to zero each round because s.shots never updates, violating the required game-wide count.
+src/sim.js allows tanks to overlap after wall correction: with computer at (17.8,0) and player at (18.8,2.3), driving south for one second leaves their centres only 2.379 units apart.
+src/shells.js falsely bounces shells near wall corners: firing east from (4.95,-11.2) registers a bounce after one step despite the shell remaining 0.283 units from the wall, beyond its 0.25 radius; reuse collide.js pushOut to detect actual circle contact.
+The tests omit reverse driving, arrow controls, tank-to-tank collisions, inner-wall shell bounces and shells passing through each other.
+The suite could not run because uv attempted to write its cache in the read-only environment, so its passing status remains unverified.

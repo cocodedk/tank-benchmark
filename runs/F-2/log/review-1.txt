@@ -1,0 +1,4 @@
+src/collide.js resolveTank leaves tanks overlapping: player (18.8,0,90) driving forward for 0.5 seconds beside computer (17,1.7) ends only 2.291 units away, below the required 2.4.
+src/sim.js stepShells misses grazing hits: firing from (-5,1.449,0) past computer (0,0) leaves its health at 100 despite the shell passing within the combined collision radii.
+src/sim.js bounce reflects only one velocity component at rounded inner-wall corners, so a shell fired from (-10.5,-12.5,45) retains positive x velocity instead of reflecting both components across the contact normal.
+src/sim.js snapshot rounds heading 359.9999 to 360, violating the required [0,360) range.

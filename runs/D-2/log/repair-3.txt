@@ -1,0 +1,6 @@
+Both findings are fixed and `bash test/gate.sh` passes (22 tests, 37 s). Nothing is committed.
+
+- **Wall corners (`src/shells.js`, `src/geom.js`):** the wall test now covers the whole step's path, using a new `segRectDist` in `geom.js`. A shell passing 0.24 from the corner (-9, 5) now bounces. A grazing contact is classed as a hit on the face the shell came from. I gave the wall test a 1e-9 tolerance so a shell just pushed off a wall doesn't bounce a second time on rounding error.
+- **Tank tangent (`src/shells.js`):** the tank-hit test is now `<=`, with 1e-9 for rounding, so a shell that only touches a tank counts as a hit.
+
+I added both reviewer cases to the existing corner test in `test_shells.py`, so the test count stays 22.

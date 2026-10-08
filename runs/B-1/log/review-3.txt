@@ -1,0 +1,4 @@
+src/ai.js freezes the computer at valid position (10,-4,180) with the player at (-5,-10,0), because its expanded rectangular wall check rejects every waypoint, leaving it stationary without firing after 60 seconds.
+src/shells.js checks wall collisions only at shell endpoints, so firing from (5.607,-9.9535,315) crosses an inner-wall corner during the first step without bouncing.
+src/shells.js excludes exact tank contact with its strict distance comparison: firing from (0,0,0) past a computer at (3.225,1.45) leaves its health at 100 despite touching.
+Nonblocking: src/sim.js place should reuse clearOfWalls instead of duplicating its wall-clearance check, keeping placement and AI validation consistent.

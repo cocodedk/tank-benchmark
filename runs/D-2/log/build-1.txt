@@ -1,0 +1,7 @@
+Tank Duel is built and `bash test/gate.sh` passes: 20 tests, 82 s. Nothing is committed.
+
+- **Code:** `index.html` plus 14 modules under `src/`, all under 200 lines, and a short `llms.txt` listing the seven tools. Your global `CLAUDE.md` asks for it; the spec doesn't.
+- **Tests:** five new test files and a small `test/common.py` helper. `test/test_zcount.py` asserts the suite has exactly 20 tests, so it needs updating whenever a test is added or removed.
+- **Space:** it fires once per key press, not while held. I read "holding Space fires one shell" that way.
+- **Computer:** it finds a line to you by a shortest-path search over a grid, so it can reach you from behind a wall. I never watched it play a full game, and I didn't check what the page looks like. The camera placement was only worked out on paper.
+- **Rendering:** the page skips redrawing when the game is paused and unchanged. Without that the suite took 259 s in headless Chrome. The 82 s run leaves limited margin under the 2-minute limit on a slower machine.

@@ -1,0 +1,1 @@
+src/game.js fly() excludes exact tank contact with its strict '<' comparison: firing from (0,0) at heading 0 past a computer at (5.225,1.45) leaves its health at 100 and the shell alive, although their radii touch and the spec requires damage and shell removal.

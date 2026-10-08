@@ -1,0 +1,1 @@
+src/sim.js:93 misses exact shell–tank contact because hit() uses < instead of <=: with AI disabled, player at (0,1.45) heading 0 and computer at (10,0), firing and stepping 0.75 seconds leaves computer health at 100 and the shell alive instead of dealing 25 damage and removing it; add a tangency regression test.

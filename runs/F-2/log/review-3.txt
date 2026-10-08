@@ -1,0 +1,3 @@
+src/sim.js lets shells pass through an inner wall: with AI off, place player at (-10.21,-10.9) heading 0 and computer at (-5,-10.9), then fire and step 0.25 seconds; the computer loses 25 health through the wall.
+src/sim.js rejects the valid wall-contact placement (-10.2,-8) because floating-point rounding makes boxDist slightly less than 1.2.
+The tests do not cover implemented real-time advancement, resizing, play without document.modelContext, arrow-key controls, or shells passing through each other.

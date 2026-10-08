@@ -1,0 +1,4 @@
+src/sim.js allows tank overlap: with AI disabled, computer at (0,12), player at (2.4,12) heading 135, and W held for 4 seconds, their centres end 2.260128 units apart instead of at least 2.4.
+src/sim.js deletes a shell fired from the legal position (-10.3,-8) heading 0 within one step because it spawns inside the wall and counts two contacts without reflecting its forward velocity.
+src/view.js keeps the camera position and field of view unchanged on resize, so an 800×1280 window crops both starting tanks and parts of the arena.
+src/tools.js accepts place without heading instead of returning the required bad-input error, and its schema does not require that field.

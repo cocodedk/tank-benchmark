@@ -1,0 +1,10 @@
+I've built the game and its tests, and `bash test/gate.sh` passes: it ran 29 tests in 35 s, with no file over 200 lines and nothing committed.
+
+- **Game:** `index.html` loads the code under `src/`, split into the game rules, the computer's driver, the 3D scene, the on-screen display, the WebMCP tools and the main loop. I also added `llms.txt`, which lists the tools for agents, as your global instructions ask.
+- **Tests:** they cover every "Done when" item. Three Haiku workers wrote the first 26 from the spec.
+- **AI fix:** the "you behind a wall" test failed at first because the computer never moved. Now it finds its way round the walls to a spot with a clear shot.
+- **Review:** an independent reviewer found no spec breaks but four gaps in the tests. I closed three by adding tests for shells bouncing off the inner walls, a computer that starts with no clear shot, and the "The computer wins the round" banner.
+
+Two things are still untested: the canvas following a window resize, and the page with WebMCP switched off. `gate.sh` also doesn't check the test count; I left it unchanged, so the count of 29 comes only from my run.
+
+The computer turns at the same rate as you and waits 1 s between its own shots, so a player who keeps moving can dodge it. That is my reading of "beat it often, but not always", and nothing tests it.

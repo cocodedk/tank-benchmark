@@ -1,0 +1,8 @@
+I fixed all four problems the reviewer rejected and added a test for each; `bash test/gate.sh` passes all 28 tests in 17 s. I didn't run the new tests against the old code to see them fail.
+
+- **Tank overlap:** if a tank is pinned between a wall and the other tank, it now stays where it was instead of being pushed into the other tank (`src/collide.js`).
+- **Grazing hits:** a shell now checks the whole path it travelled in each step, not just where it ends up, so a near miss within the combined radii counts as a hit.
+- **Corner bounce:** a shell now reflects its full velocity off the contact direction, so a shell that hits a rounded corner head-on comes straight back.
+- **Heading of 360:** a rounded heading of 360 now reads as 0.
+
+The last three fixes are in `src/sim.js`.

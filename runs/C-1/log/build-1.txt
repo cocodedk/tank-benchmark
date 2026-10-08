@@ -1,0 +1,8 @@
+I've built Tank Duel and its tests, and `bash test/gate.sh` passes all 28 tests in about 50 s, under the two-minute limit.
+
+- **Game:** `index.html` plus eight modules under `src/`, the longest being `src/sim.js` at 103 lines. The game code and the tests were written by two separate workers, so the builder didn't grade its own work.
+- **Speed fix:** the first full run took 252 s because the 3D scene was redrawn every frame even while paused. It now redraws only after a change when paused, and antialiasing is off; that brought the suite down to 44–50 s.
+- **One test change:** the banner check now waits up to 2 s for the banner to appear instead of checking once. A single check could fail by chance, because the screen now redraws a frame after the state changes.
+- **Not tested:** the spec says a steady player should beat the computer often but not always. No test checks that, because it is a judgement about difficulty rather than a fixed number.
+
+Nothing is committed.

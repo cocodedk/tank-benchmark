@@ -1,0 +1,10 @@
+The game is built and `bash test/gate.sh` passes: 31 tests in 24 s. I didn't open the page myself, so I haven't looked at the rendering.
+
+- **Code:** `index.html` plus eleven modules under `src/`, all under 200 lines.
+- **Tests:** they cover the seven tools and their bad-input answers, the keys, wall stops, shells, rounds and the AI. A test asserts the suite's test count.
+
+- **AI:** it fires once every 0.75 s. It never advances on a player it can see, only on one it can't.
+- **Held Space:** holding Space fires a shell every 0.5 s, because the game reads held keys at every step.
+- **Stray files:** early on I wrote copies of `index.html`, `src/` and `test/helpers.py`, plus the new test files, to `~/lean-tmp/tank-bench/` instead of the checkout. The real files are all in `work/A-1/`. I couldn't delete the strays with the commands I'm allowed, so please remove them.
+- **Shared Chrome:** the tests share one Chrome, because launching one per test took 345 s. The page is reset between tests, and the console-error check covers the whole run.
+- **Idle rendering:** a paused game no longer redraws every frame, only after a tool changes something.

@@ -1,0 +1,8 @@
+I fixed all four rejected points and the suite passes (35 tests in 48 s), though the camera fix has no test and I haven't looked at an 800×1280 window.
+
+- **Tank overlap** (`drive` in `src/sim.js`): when a wall pushes a tank back onto the other tank, the tank now stays where it was for that step. A new driving test repeats the reviewer's case and checks the tanks stay at least 2.4 apart.
+- **Shell spawned inside a wall** (`bounce` in `src/sim.js`): a shell overlapping a wall, even fully inside it, is now pushed back out against its direction of travel and its velocity flips. In the reviewer's case the reflected shell hits its own tank on the way back, taking 25 health, and a new shell test checks that.
+- **Narrow windows** (`fit` in `src/view.js`): the camera now moves back along the same line of sight when the window is narrower than 1280×800, so the full width of the arena stays in view.
+- **`place` without a heading** (`src/sim.js`, `src/tools.js`): it is now refused with `ok: false` and an error, and every tool's schema marks all its fields as required. The tools test covers the missing-heading case.
+
+Nothing is committed.

@@ -1,0 +1,6 @@
+src/tanks.js:13–24 lets tank separation push the player inside an inner wall: place computer at (-12,8), player at (-10.2,10) heading 270, then hold W for 0.5 seconds.
+src/shells.js:63 misses grazing hits between steps: firing from (0,0) heading 0 past the computer at (10,1.449) leaves its health at 100 despite contact.
+src/shells.js:29–40 falsely bounces corner near-misses: firing from (-10.508147545,6.108147545) heading 315 bounces although the trajectory clears the wall corner by 0.282843 units, exceeding the shell radius.
+src/input.js:19 stops movement when W is released while ArrowUp remains held because both keys share one action boolean.
+src/input.js:14–19 and src/sim.js:10–11 fire a queued Space press even when Space was released before the paused simulation advances, violating held-key sampling.
+Nonblocking suggestion: src/nav.js:19–20 should reuse geom.js's existing clamp function because it already implements the same bounds calculation.
