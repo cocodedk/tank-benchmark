@@ -6,7 +6,6 @@ frames (shots/), and the files GitHub Pages serves with them. .github/workflows/
 """
 from __future__ import annotations
 
-import datetime
 import json
 import pathlib
 import re
@@ -26,14 +25,13 @@ FONTS = {
           "&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap",
     "fa": "https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap",
 }
-# Each page: its folder, direction, the way back to the shared files, Open Graph locales, and the other language's link.
+# Each page: its folder, direction, the way back to the shared files, and its Open Graph locales.
 PAGES = {
-    "en": {"path": "", "dir": "ltr", "root": "", "locale": "en_US", "other": "fa_IR", "switch": ("fa/", "fa", "فارسی")},
-    "fa": {"path": "fa/", "dir": "rtl", "root": "../", "locale": "fa_IR", "other": "en_US", "switch": ("../", "en", "English")},
+    "en": {"path": "", "dir": "ltr", "root": "", "locale": "en_US", "other": "fa_IR"},
+    "fa": {"path": "fa/", "dir": "rtl", "root": "../", "locale": "fa_IR", "other": "en_US"},
 }
 STATIC = ("styles.css", "favicon.svg", "og.png")
 I18N = json.loads((HERE / "i18n.json").read_text(encoding="utf-8"))
-FA_DIGITS = str.maketrans("0123456789", "۰۱۲۳۴۵۶۷۸۹")
 
 
 def summary(r: dict) -> dict:
@@ -92,11 +90,6 @@ def png_size(path: pathlib.Path) -> list[int]:
     return list(struct.unpack(">II", head[16:24]))
 
 
-def persian_year(day: datetime.date) -> int:
-    """The Solar Hijri year, which starts on 21 March (the day can differ by one in some years)."""
-    return day.year - 621 if (day.month, day.day) >= (3, 21) else day.year - 622
-
-
 def fill(template: str, values: dict) -> str:
     """Replace each {{name}}. A name with no value raises KeyError, so a misspelt placeholder cannot ship."""
     return re.sub(r"\{\{(\w+)\}\}", lambda m: values[m.group(1)], template)
@@ -115,12 +108,10 @@ def jsonld(lang: str, text: dict, url: str) -> dict:
             "publisher": {"@type": "Organization", "name": "Cocode", "url": "https://cocode.dk"}}
 
 
-def page_html(lang: str, rows: list[dict], today: datetime.date) -> str:
+def page_html(lang: str, rows: list[dict]) -> str:
     cfg, text = PAGES[lang], I18N[lang]
     url = f"{ORIGIN}/{cfg['path']}"
-    year = str(persian_year(today)).translate(FA_DIGITS) if lang == "fa" else str(today.year)
     strings = {k: v for k, v in text.items() if isinstance(v, str)}
-    strings["footer"] = text["footer"].replace("{year}", year)
     strings["lede"] = text["lede"].replace("{runs}", str(len(rows))).replace("{setups}", str(len({r["combo"] for r in rows})))
     head = fill(pathlib.Path(HERE / "head.html").read_text(encoding="utf-8"), {
         **strings, "origin": ORIGIN, "lang": lang, "dir": cfg["dir"], "root": cfg["root"], "fonts": FONTS[lang],
@@ -128,8 +119,7 @@ def page_html(lang: str, rows: list[dict], today: datetime.date) -> str:
         "jsonld": json.dumps(jsonld(lang, text, url), ensure_ascii=False, indent=1)})
     body = fill((HERE / "page.html").read_text(encoding="utf-8"), {
         **strings, "notes": "".join(f"<li>{item}</li>" for item in text["notes"]),
-        "method": "".join(f"<li>{item}</li>" for item in text["method"]),
-        "switch_href": cfg["switch"][0], "switch_lang": cfg["switch"][1], "switch_text": cfg["switch"][2]})
+        "method": "".join(f"<li>{item}</li>" for item in text["method"]),})
     script_data = {**text, "en_setups": I18N["en"]["setups"], "root": cfg["root"]}
     body = body.replace("/*DATA*/[]", script_json(rows)).replace("/*T*/{}", script_json(script_data))
     return head + body + "</body>\n</html>\n"
@@ -205,13 +195,12 @@ One playable game per finished run ({games}). Each game page declares seven tool
 
 
 def main() -> None:
-    today = datetime.date.today()
     runs = [json.loads(p.read_text(encoding="utf-8")) for p in sorted((HERE / "runs").glob("*/run.json"))]
     rows = [summary(r) for r in runs if "hidden" in r]
     shutil.rmtree(SITE, ignore_errors=True)
     (SITE / "fa").mkdir(parents=True)
     for lang, cfg in PAGES.items():
-        (SITE / cfg["path"] / "index.html").write_text(page_html(lang, rows, today), encoding="utf-8")
+        (SITE / cfg["path"] / "index.html").write_text(page_html(lang, rows), encoding="utf-8")
     for name in STATIC:
         shutil.copyfile(HERE / name, SITE / name)
     publish_games(rows)

@@ -1,10 +1,9 @@
+<cocode-head project="{{h1}}" accent="#3e6f9e" on-accent="#ffffff" links="{{frame_links}}"><a href="https://cocode.dk">cocode.dk</a></cocode-head>
 <main>
   <header class="stack">
-    <nav class="lang" aria-label="{{lang_label}}">
-      <a class="lang-switch" href="{{switch_href}}" lang="{{switch_lang}}" hreflang="{{switch_lang}}">{{switch_text}}</a>
-    </nav>
     <h1>{{h1}}</h1>
     <p class="lede">{{lede}}</p>
+    <p class="byline">{{byline}}</p>
   </header>
 
   <section class="verdict" id="verdict" aria-live="polite"></section>
@@ -40,9 +39,7 @@
   </section>
 </main>
 
-<footer>
-  <p>{{footer}}</p>
-</footer>
+<cocode-foot project="{{h1}}" repo="cocodedk/tank-benchmark"><a href="https://cocode.dk">{{made_by}}</a></cocode-foot>
 
 <script>
 const RUNS = /*DATA*/[];

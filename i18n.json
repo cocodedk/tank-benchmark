@@ -3,7 +3,6 @@
   "title": "AI coding loop benchmark: Tank Duel results · Cocode",
   "description": "Which AI build setup a coding loop should use: cost, minutes, repairs and hidden checks for every run of one three.js tank game, playable here.",
   "og_alt": "Plan of the Tank Duel arena from above: two tanks, four walls and one shell in flight.",
-  "lang_label": "Language",
   "h1": "Tank Duel Benchmark",
   "lede": "{runs} copies of one three.js game, built from the same spec by {setups} build setups, two runs each, to choose how graph-loop should build. Every run went through the loop's stages: build, test suite, an independent review, and up to two repairs. Then 14 hidden checks, which no builder saw, graded the game through its own controls.",
   "h_setups": "Each setup, averaged over its two runs",
@@ -33,7 +32,6 @@
    "The first twelve runs (A to F) ran at the same time on one machine, and G's two ran later, so the test suite's times include that load.",
    "One new game is a different job from graph-loop's usual small edits to existing code, so the result is one input to graph-loop's defaults, not the whole answer."
   ],
-  "footer": "© {year} <a href=\"https://cocode.dk\" target=\"_blank\" rel=\"noreferrer\">Cocode</a> &nbsp;|&nbsp; Created by <a href=\"https://linkedin.com/in/babakbandpey\" target=\"_blank\" rel=\"noreferrer\">Babak Bandpey</a>",
   "table": {
    "setup": "Setup",
    "dollars": "Dollars a run",
@@ -70,13 +68,15 @@
   "round": "{state}/{verdict}",
   "sep": " → ",
   "words": {},
-  "digits": null
+  "digits": null,
+  "byline": "By <a href=\"https://linkedin.com/in/babakbandpey\" rel=\"author\">Babak Bandpey</a>",
+  "made_by": "Made by Babak Bandpey",
+  "frame_links": "Agent harnesses:https://agents.cocode.dk/,Source:https://github.com/cocodedk/tank-benchmark"
  },
  "fa": {
   "title": "معیار حلقهٔ کدنویسی با هوش مصنوعی: نتایج Tank Duel · Cocode",
   "description": "کدام روش ساخت با هوش مصنوعی را یک حلقه‌ی کدنویسی باید به کار ببرد: هزینه، زمان، اصلاح‌ها و بررسی‌های پنهان هر اجرا روی یک بازی سه‌بعدی تانک.",
   "og_alt": "نقشه‌ی میدان Tank Duel از بالا: دو تانک، چهار دیوار و یک گلوله در مسیر.",
-  "lang_label": "زبان",
   "h1": "معیار Tank Duel",
   "lede": "{runs} اجرا از یک بازی three.js با یک مشخصات واحد، با {setups} روش ساخت مختلف و هر روش دو بار، تا معلوم شود graph-loop باید چطور بسازد. هر اجرا مراحل حلقه را طی کرد: ساخت، مجموعه‌ی آزمون، بازبینی مستقل و تا دو اصلاح. سپس 14 بررسی پنهان، که هیچ سازنده‌ای ندیده بود، بازی را از راه کنترل‌های خودش سنجید.",
   "h_setups": "هر روش، میانگین دو اجرای آن",
@@ -106,7 +106,6 @@
    "دوازده اجرای اول (A تا F) هم‌زمان روی یک ماشین بودند و دو اجرای G بعداً، پس زمان‌های مجموعه‌ی آزمون بار آن را هم دارند.",
    "ساختن یک بازی تازه با ویرایش‌های کوچکی که graph-loop معمولاً انجام می‌دهد فرق دارد. پس این نتیجه یکی از ورودی‌های تنظیم پیش‌فرض graph-loop است، نه پاسخ کامل."
   ],
-  "footer": "© {year} <a href=\"https://cocode.dk\" target=\"_blank\" rel=\"noreferrer\">Cocode</a> &nbsp;|&nbsp; ساخته شده توسط <a href=\"https://linkedin.com/in/babakbandpey\" target=\"_blank\" rel=\"noreferrer\">بابک بندپی</a>",
   "table": {
    "setup": "روش",
    "dollars": "دلار برای هر اجرا",
@@ -160,6 +159,9 @@
    "۷",
    "۸",
    "۹"
-  ]
+  ],
+  "byline": "نوشتهٔ <a href=\"https://linkedin.com/in/babakbandpey\" rel=\"author\">بابک بندپی</a>",
+  "made_by": "ساختهٔ بابک بندپی",
+  "frame_links": "معیار هارنس‌ها:https://agents.cocode.dk/,کد منبع:https://github.com/cocodedk/tank-benchmark"
  }
 }
