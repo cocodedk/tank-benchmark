@@ -1,0 +1,46 @@
+{
+ "task": "taj-mahal",
+ "model": "deepseek-v4.1-flash-1017",
+ "thinking": "max",
+ "price_per_million_usd": {
+  "input": 0.3,
+  "output": 1.2,
+  "cache_read": 0.006
+ },
+ "wall_s": 1345,
+ "turns": 84,
+ "gen_s": 932,
+ "tool_s": 100,
+ "tok_per_s": 138.9,
+ "input": 449328,
+ "output": 129470,
+ "cacheRead": 9319296,
+ "cacheWrite": 0,
+ "reasoning": 76419,
+ "cost_flat_usd": 0.3461,
+ "cost_billed_usd": 0.173,
+ "suite_runs": 9,
+ "suite_green": [
+  false,
+  false,
+  false,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true
+ ],
+ "errors": 0,
+ "code": {
+  "game": 1893,
+  "test": 127,
+  "files": 25,
+  "longest": 177
+ },
+ "judge": {
+  "checks_passed": 26,
+  "checks_total": 26,
+  "suite_tests": 7
+ }
+}

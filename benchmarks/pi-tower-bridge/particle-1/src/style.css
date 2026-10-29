@@ -1,0 +1,94 @@
+:root {
+  color-scheme: light;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #dbe7eb;
+}
+
+#view {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  cursor: grab;
+  touch-action: none;
+}
+
+#view.dragging { cursor: grabbing; }
+
+.title {
+  position: fixed;
+  top: 18px;
+  left: 22px;
+  color: #26343a;
+  pointer-events: none;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.title h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.title p {
+  margin: 3px 0 0;
+  font-size: 13px;
+  font-style: italic;
+  opacity: 0.72;
+}
+
+.signature {
+  position: fixed;
+  left: 20px;
+  bottom: 14px;
+  margin: 0;
+  font-size: 11px;
+  letter-spacing: 0.03em;
+  color: #26343a;
+  opacity: 0.55;
+  pointer-events: none;
+  user-select: none;
+}
+
+.controls {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+}
+
+.controls button {
+  min-width: 44px;
+  height: 42px;
+  padding: 0 14px;
+  border: 1px solid rgba(38, 52, 58, 0.28);
+  border-radius: 9px;
+  background: rgba(247, 244, 236, 0.88);
+  color: #26343a;
+  font: 600 18px/1 Georgia, "Times New Roman", serif;
+  box-shadow: 0 2px 8px rgba(20, 40, 50, 0.18);
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.controls button:hover { background: #fffdf7; }
+
+.controls button:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 4px rgba(20, 40, 50, 0.18);
+}
+
+.controls #reset {
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}

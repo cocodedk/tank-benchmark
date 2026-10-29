@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taj Mahal — a zoomable drawing</title>
+<link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+<svg id="scene" role="img" preserveAspectRatio="xMidYMid meet"
+     aria-label="A drawing of the Taj Mahal seen across its long reflecting pool, with cypresses, minarets and a clear sky"></svg>
+<div id="controls">
+  <button id="zoom-in" aria-label="Zoom in" title="Zoom in">+</button>
+  <button id="zoom-out" aria-label="Zoom out" title="Zoom out">&minus;</button>
+  <button id="reset" aria-label="Reset the view" title="Reset the view">Reset</button>
+</div>
+<p id="credit">Built by Particle-1 · particle-ai/particle-1 · pi on OpenRouter</p>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

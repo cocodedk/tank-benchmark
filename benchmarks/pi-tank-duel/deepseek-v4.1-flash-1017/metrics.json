@@ -1,0 +1,46 @@
+{
+ "task": "tank-duel",
+ "model": "deepseek-v4.1-flash-1017",
+ "thinking": "max",
+ "price_per_million_usd": {
+  "input": 0.3,
+  "output": 1.2,
+  "cache_read": 0.006
+ },
+ "wall_s": 1219,
+ "turns": 67,
+ "gen_s": 647,
+ "tool_s": 503,
+ "tok_per_s": 205.3,
+ "input": 938710,
+ "output": 132816,
+ "cacheRead": 5909888,
+ "cacheWrite": 0,
+ "reasoning": 131796,
+ "cost_flat_usd": 0.4765,
+ "cost_billed_usd": 0.4765,
+ "suite_runs": 9,
+ "suite_green": [
+  false,
+  false,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true
+ ],
+ "errors": 0,
+ "code": {
+  "game": 1148,
+  "test": 434,
+  "files": 24,
+  "longest": 161
+ },
+ "judge": {
+  "checks_passed": 14,
+  "checks_total": 14,
+  "suite_tests": 28
+ }
+}

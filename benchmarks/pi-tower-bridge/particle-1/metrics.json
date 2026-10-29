@@ -1,0 +1,39 @@
+{
+ "task": "tower-bridge",
+ "model": "particle-1",
+ "thinking": "max",
+ "price_per_million_usd": {
+  "input": 0.25,
+  "output": 1.0,
+  "cache_read": 0.03
+ },
+ "wall_s": 194,
+ "turns": 36,
+ "gen_s": 116,
+ "tool_s": 31,
+ "tok_per_s": 498.8,
+ "input": 206870,
+ "output": 57880,
+ "cacheRead": 1782272,
+ "cacheWrite": 0,
+ "reasoning": 33215,
+ "cost_flat_usd": 0.1631,
+ "cost_billed_usd": 0.1631,
+ "suite_runs": 2,
+ "suite_green": [
+  true,
+  true
+ ],
+ "errors": 0,
+ "code": {
+  "game": 997,
+  "test": 105,
+  "files": 14,
+  "longest": 174
+ },
+ "judge": {
+  "checks_passed": 20,
+  "checks_total": 20,
+  "suite_tests": 10
+ }
+}

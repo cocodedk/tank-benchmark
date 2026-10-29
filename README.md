@@ -4,8 +4,18 @@
 
 Which build lifecycle should [graph-loop](https://github.com/cocodedk/graph-loop) use?
 ([issue #463](https://github.com/cocodedk/graph-loop/issues/463).) Each setup below builds its own copy of the
-same game, **Tank Duel** (`spec.md`): a three.js arena where you and the computer drive tanks and shoot shells
-that bounce once off the walls. Every version is kept in this project, under `runs/<setup>-<n>/`.
+same game, **Tank Duel** (`benchmarks/setups-a-g/spec.md`): a three.js arena where you and the computer drive tanks and shoot shells
+that bounce once off the walls. Every version is kept in this project, under `benchmarks/setups-a-g/runs/<setup>-<n>/`.
+
+## pi benchmark
+
+A second, separate benchmark: two OpenRouter models, particle-1 and DeepSeek V4.1 Flash, run through the
+pi agent CLI at maximum thinking, each building Tank Duel, a zoomable 2D
+Tower Bridge and a zoomable 2D Taj Mahal drawn from a photo, one run each. It is measured differently from setups A to G (no reviewer, no repairs from a brief; one
+session tests its own work; cost is token counts times OpenRouter's list price), so the two cannot be compared.
+Results: [tanks.cocode.dk/pi/](https://tanks.cocode.dk/pi/). Sources, numbers and prompts: `benchmarks/pi-tank-duel/`, `benchmarks/pi-tower-bridge/`, `benchmarks/pi-taj-mahal/`; the page: `pi/`;
+the scripts that ran and measured it: `scripts/pi/` (the zoom checks are `scripts/pi/zoom_checks.py`, the image checks
+`scripts/pi/image_checks.py`). The Taj Mahal photo is attached to the model's message and is kept out of git.
 
 ## Website
 
@@ -36,7 +46,7 @@ Fixed for every run: the reviewer (gpt-6.1-sol medium, graph-loop's), a $10 Clau
 repairs, and no repair starting after 75 minutes.
 
 A run goes: build, suite (`bash test/gate.sh`), review, repair while red or refused. Then the hidden checks
-(`hidden/checks.py`) grade the game through its WebMCP tools.
+(`benchmarks/setups-a-g/hidden/checks.py`) grade the game through its WebMCP tools.
 
 ## Build from Source
 
@@ -52,43 +62,51 @@ Prerequisites:
 Clone and run:
 
     git clone https://github.com/cocodedk/tank-benchmark
-    cd tank-benchmark
+    cd tank-benchmark/benchmarks/setups-a-g
     python3 bench.py all 2       # all 7 setups, 2 repeats each, at once
     python3 bench.py all 2 B G   # only setups B and G, 2 repeats each
     python3 bench.py run B-1     # one run
     python3 bench.py status      # where each run is, and how it ended
     python3 bench.py watch       # the same, live (Ctrl-C leaves)
     python3 bench.py grade B-1   # the hidden checks again, on a finished run
-    python3 gallery.py           # writes site/: the results page and each finished game
+    python3 ../../gallery.py     # writes site/ at the top of the project: the results page and each finished game
 
 - Each run may spend up to $10 of Claude, so `all 2` may spend up to $140.
-- `run` and `all` replace the run's folder in `runs/`. Copy a run somewhere first if you want to keep it.
-- A build happens in `~/lean-tmp/tank-bench/work`, outside this project, so it never sees `hidden/` or another
+- `run` and `all` replace the run's folder in `benchmarks/setups-a-g/runs/`. Copy a run somewhere first if you want to keep it.
+- A build happens in `~/lean-tmp/tank-bench/work`, outside this project, so it never sees `benchmarks/setups-a-g/hidden/` or another
   run. Set `BENCH_WORK` to use another folder.
-- To play or test one game by hand: `cd runs/B-1/game && bash test/gate.sh`.
+- To play or test one game by hand: `cd benchmarks/setups-a-g/runs/B-1/game && bash test/gate.sh`.
 
 ## Architecture
 
-    bench.py            the harness: run, all, status, watch, brief, grade
-    calls.py            the three calls a run makes: a Claude session, the suite, a Codex review
-    progress.py         the status table and the live view
-    gallery.py          builds site/, the results page
-    page.html           the results page template; gallery.py fills in its data
-    spec.md             the game's spec, "Tank Duel"
-    seed/               the checkout every run starts from: CLAUDE.md, test/, vendor/ (three.js)
-    hidden/checks.py    the 14 hidden checks; never copied into a run
-    runs/<run>/         one folder per run: run.json, log/, game/, hidden.json, screenshot.png
+    benchmarks/
+      setups-a-g/         the seven-setup benchmark: Tank Duel built by setups A to G
+        bench.py          the harness: run, all, status, watch, brief, grade
+        calls.py          the three calls a run makes: a Claude session, the suite, a Codex review
+        progress.py       the status table and the live view
+        spec.md           the game's spec, "Tank Duel"
+        seed/             the checkout every run starts from: CLAUDE.md, test/, vendor/ (three.js)
+        hidden/checks.py  the 14 hidden checks; never copied into a run
+        runs/<run>/       one folder per run: run.json, log/, game/, hidden.json, screenshot.png
+        tests/            unit tests of the harness
+      pi-tank-duel/       the pi benchmark's Tank Duel: prompt.txt and one folder per model
+      pi-tower-bridge/    the pi benchmark's zoomable Tower Bridge: prompt.txt and one folder per model
+      pi-taj-mahal/       the pi benchmark's zoomable Taj Mahal, drawn from a photo
+    scripts/pi/           run, time and measure a pi session; the zoom checks
+    pi/                   the pi benchmark's results page
+    gallery.py            builds site/ (both benchmarks' pages)
+    page.html             the results page template; gallery.py fills in its data
 
-`runs/<run>/run.json` holds the numbers (dollars per call and per model, minutes, cache-read share, rounds,
-the suite and review per round, the hidden checks), `runs/<run>/game/` the game, `runs/<run>/log/` what each
-call said, and `runs/<run>/screenshot.png` its first frame.
+`benchmarks/setups-a-g/runs/<run>/run.json` holds the numbers (dollars per call and per model, minutes, cache-read share, rounds,
+the suite and review per round, the hidden checks), `game/` the game, `log/` what each
+call said, and `screenshot.png` its first frame, all in that run's folder.
 
 | Part | Made with |
 |---|---|
 | Harness | Python 3, standard library only |
 | Builders and workers | Claude Code: Opus 5.5, Sonnet 5.5, Haiku 5.5 |
 | Reviewer | Codex CLI: gpt-6.1-sol |
-| Game | three.js r170 in `seed/vendor/`, plain ES modules, no build step |
+| Game | three.js r170 in `benchmarks/setups-a-g/seed/vendor/`, plain ES modules, no build step |
 | Game tools | WebMCP: `document.modelContext.registerTool` |
 | Suite and hidden checks | Python `unittest` and Playwright, run through `uvx` |
 | Results page | Static HTML, built by `gallery.py` |

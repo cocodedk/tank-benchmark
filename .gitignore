@@ -1,3 +1,5 @@
 __pycache__/
-runs/*/game/vendor/
+benchmarks/setups-a-g/runs/*/game/vendor/
 site/
+benchmarks/pi-*/*/vendor/
+benchmarks/pi-taj-mahal/taj-mahal.png

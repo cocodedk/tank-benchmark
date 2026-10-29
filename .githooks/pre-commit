@@ -18,10 +18,10 @@ if [ -n "$hits" ]; then
 fi
 
 # Ruff reads the harness Python only: staged .py files, never the run folders.
-py=$(git diff --cached --name-only --diff-filter=ACMR -- '*.py' ':!runs')
+py=$(git diff --cached --name-only --diff-filter=ACMR -- '*.py' ':!benchmarks/*/runs/*' ':!benchmarks/pi-*/*')
 if [ -n "$py" ]; then
   echo "$py" | xargs uvx ruff@0.16.8 check
 fi
 
 # No bytecode is written, so a test run never dirties the tracked __pycache__ files.
-PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s tests
+PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s benchmarks/setups-a-g/tests

@@ -70,6 +70,7 @@
   "words": {},
   "digits": null,
   "byline": "By <a href=\"https://linkedin.com/in/babakbandpey\" rel=\"author\">Babak Bandpey</a>",
+  "pi_link": "New: the pi benchmark, particle-1 against DeepSeek on two coding tasks (one run each).",
   "made_by": "Made by Babak Bandpey",
   "frame_links": "Agent harnesses:https://agents.cocode.dk/,Source:https://github.com/cocodedk/tank-benchmark"
  },
@@ -161,6 +162,7 @@
    "۹"
   ],
   "byline": "نوشتهٔ <a href=\"https://linkedin.com/in/babakbandpey\" rel=\"author\">بابک بندپی</a>",
+  "pi_link": "تازه: سنجش pi، مدل particle-1 در برابر DeepSeek روی دو کار کدنویسی (هر کدام یک بار اجرا شده).",
   "made_by": "ساختهٔ بابک بندپی",
   "frame_links": "معیار هارنس‌ها:https://agents.cocode.dk/,کد منبع:https://github.com/cocodedk/tank-benchmark"
  }

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tank Duel</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #0e141b; }
+  #app, #app canvas { position: fixed; inset: 0; display: block; }
+  #hud {
+    position: fixed; inset: 0; pointer-events: none; color: #f4f1e8;
+    font-family: system-ui, sans-serif; font-size: 15px;
+  }
+  .panel {
+    position: absolute; top: 16px; width: 280px; padding: 10px 12px;
+    background: rgba(12, 18, 24, .72); border: 1px solid rgba(255, 255, 255, .16);
+    border-radius: 8px;
+  }
+  .panel.you { left: 16px; }
+  .panel.computer { right: 16px; text-align: right; }
+  .label { font-weight: 700; letter-spacing: .04em; margin-bottom: 6px; }
+  .bar { height: 12px; background: rgba(255, 255, 255, .14); border-radius: 6px; overflow: hidden; }
+  .fill { height: 100%; width: 100%; border-radius: 6px; transition: width .12s linear; }
+  .fill.you { background: #4c9dff; }
+  .fill.computer { background: #ff6154; }
+  .center {
+    position: absolute; top: 16px; left: 50%; transform: translateX(-50%);
+    text-align: center; min-width: 260px;
+  }
+  #round { font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: .8; }
+  #score { font-size: 34px; font-weight: 800; line-height: 1.1; }
+  .controls { margin-top: 6px; opacity: .65; font-size: 13px; }
+  #banner {
+    position: fixed; top: 44%; left: 50%; transform: translate(-50%, -50%);
+    padding: 16px 28px; border-radius: 10px; pointer-events: none;
+    background: rgba(12, 18, 24, .86); border: 1px solid rgba(255, 255, 255, .2);
+    color: #f4f1e8; font: 800 30px system-ui, sans-serif;
+    opacity: 0; transition: opacity .2s ease;
+  }
+  #banner.show { opacity: 1; }
+  #signature {
+    position: fixed; right: 10px; bottom: 8px; pointer-events: none;
+    color: rgba(244, 241, 232, .4); font: 11px/1.4 system-ui, sans-serif;
+    letter-spacing: .02em; user-select: none;
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="hud">
+  <div class="panel you">
+    <div class="label">You</div>
+    <div class="bar"><div id="you-health" class="fill you"></div></div>
+  </div>
+  <div class="panel computer">
+    <div class="label">Computer</div>
+    <div class="bar"><div id="computer-health" class="fill computer"></div></div>
+  </div>
+  <div class="center">
+    <div id="round">Round 1</div>
+    <div id="score">0 : 0</div>
+    <div class="controls">W/&uarr; forward &middot; S/&darr; back &middot; A/&larr; D/&rarr; turn &middot; Space fire</div>
+  </div>
+</div>
+<div id="banner"></div>
+<div id="signature"></div>
+<script type="importmap">
+  { "imports": { "three": "./vendor/three.module.min.js" } }
+</script>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

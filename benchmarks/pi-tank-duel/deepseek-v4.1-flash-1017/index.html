@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tank Duel</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <canvas id="game" aria-label="Tank Duel arena"></canvas>
+
+  <div id="hud">
+    <div class="top">
+      <div class="side">
+        <div class="label"><span class="dot blue"></span>You</div>
+        <div class="bar"><div id="player-health" class="fill blue"></div></div>
+      </div>
+
+      <div class="middle">
+        <div id="score">0 : 0</div>
+        <div id="round">Round 1</div>
+        <div id="status">AI on</div>
+      </div>
+
+      <div class="side right">
+        <div class="label"><span class="dot red"></span>Computer</div>
+        <div class="bar"><div id="computer-health" class="fill red"></div></div>
+      </div>
+    </div>
+
+    <div id="banner"></div>
+    <div id="controls">W / ↑ forward · S / ↓ reverse · A / D or ← / → turn · Space fire</div>
+  </div>
+
+  <p id="signature"></p>
+
+  <script type="importmap">
+    {"imports": {"three": "./vendor/three.module.min.js"}}
+  </script>
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

@@ -26,10 +26,10 @@ jobs:
       - uses: astral-sh/setup-uv@c18668ad3cf93ea998bef934396af7bb5c839dc7 # v10
 
       - name: Lint the harness
-        run: uvx ruff@0.16.8 check --exclude runs .
+        run: uvx ruff@0.16.8 check .
 
       - name: Unit tests (no model is called)
-        run: python3 -m unittest discover -s tests -v
+        run: python3 -m unittest discover -s benchmarks/setups-a-g/tests -v
 
       - name: The results site builds
         run: python3 gallery.py > /dev/null
