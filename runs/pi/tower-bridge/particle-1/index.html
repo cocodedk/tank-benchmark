@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tower Bridge</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <canvas id="view" aria-label="A zoomable drawing of Tower Bridge in London"></canvas>
+
+  <header class="title">
+    <h1>Tower Bridge</h1>
+    <p>Scroll to zoom &middot; drag to pan</p>
+  </header>
+
+  <p class="signature">Built by particle-1 (particle-ai/particle-1) &middot; pi agent on OpenRouter</p>
+
+  <div class="controls">
+    <button id="zoom-out" type="button" aria-label="Zoom out">&minus;</button>
+    <button id="zoom-in" type="button" aria-label="Zoom in">+</button>
+    <button id="reset" type="button">Reset</button>
+  </div>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

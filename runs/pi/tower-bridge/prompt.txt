@@ -1,0 +1,21 @@
+Build a 2D model of Tower Bridge in London that I can zoom in and out. Follow the repository's CLAUDE.md. Choose the smallest coherent solution.
+
+## What it must be
+
+- Pure JavaScript, HTML and CSS: no three.js, no library, no build step, nothing from the network, no image files. Draw it in code, with SVG or canvas 2D.
+- `index.html` at the top of the checkout, plus ES modules under `src/`. The drawing fills the browser window and follows its size.
+- It must look like Tower Bridge: the two Gothic towers, the high-level walkways between them, the lower road deck, the side spans with their suspension chains, the river below and a sky. Zooming in must reveal more detail (windows, turrets, rails, stonework), not just a larger picture.
+- Zoom with the mouse wheel (toward the cursor), with + and - buttons and with a Reset button; drag to pan. Zoom goes from 1 (the whole bridge fits the window) to 20.
+
+## WebMCP tools
+
+Register each tool with `document.modelContext.registerTool({name, description, inputSchema, execute})`; when `document.modelContext` is absent, register nothing and the page still works. Every tool answers a JSON object; a bad input answers `{"ok": false, "error": "..."}` and never throws.
+
+- `describe` `{}`: says what is on the page: `{"ok": true, "zoom": 1, "x": 0, "y": 0, "parts": ["north tower", ...]}`, `x` and `y` being the model point at the centre of the window.
+- `zoom_by` `{"factor": 2}`: multiplies the zoom about the window centre, clamped to 1..20; answers like `describe`.
+- `pan` `{"dx": 10, "dy": 0}`: moves the view by that much in the model's units; answers like `describe`.
+- `reset` `{}`: zoom 1, centred; answers like `describe`.
+
+## Rules
+
+The suite is `bash test/gate.sh`: run it yourself, read any failure, and fix the cause until it is green, then stop. Add tests for the zoom and pan behaviour. Do not commit, push, use Docker, install anything, or read or write any file outside this checkout (that includes ~/.agents). Never start or wait on a background job.

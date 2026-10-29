@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tower Bridge — a zoomable model</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <canvas id="scene" aria-label="A drawn, zoomable model of Tower Bridge in London"></canvas>
+  <h1 id="title">Tower Bridge · London</h1>
+  <p id="hint">Scroll to zoom · drag to pan</p>
+  <p id="signature">Built by DeepSeek V4.1 Flash · deepseek/deepseek-v4.1-flash-1017 · pi on OpenRouter</p>
+  <div id="hud">
+    <span id="readout">1.0×</span>
+    <button id="zoom-in" type="button" aria-label="Zoom in">+</button>
+    <button id="zoom-out" type="button" aria-label="Zoom out">−</button>
+    <button id="reset" type="button">Reset</button>
+  </div>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+{
+ "task": "tower-bridge",
+ "model": "deepseek-v4.1-flash-1017",
+ "thinking": "max",
+ "price_per_million_usd": {
+  "input": 0.3,
+  "output": 1.2,
+  "cache_read": 0.006
+ },
+ "wall_s": 699,
+ "turns": 63,
+ "gen_s": 466,
+ "tool_s": 77,
+ "tok_per_s": 260.3,
+ "input": 48483,
+ "output": 121240,
+ "cacheRead": 6498304,
+ "cacheWrite": 0,
+ "reasoning": 81614,
+ "cost_flat_usd": 0.199,
+ "cost_billed_usd": 0.143,
+ "suite_runs": 9,
+ "suite_green": [
+  false,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true,
+  true
+ ],
+ "errors": 0,
+ "code": {
+  "game": 1360,
+  "test": 105,
+  "files": 21,
+  "longest": 137
+ },
+ "judge": {
+  "checks_passed": 20,
+  "checks_total": 20,
+  "suite_tests": 8
+ }
+}

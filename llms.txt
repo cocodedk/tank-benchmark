@@ -26,6 +26,24 @@ One playable game per finished run (A-1, A-2, B-1, B-2, C-1, C-2, D-1, D-2, E-1,
 - set_ai: Switches the computer's driving and firing on or off.
 - reset: Starts a new game: round 1, score 0 to 0, start positions and full health.
 
+## pi benchmark: https://tanks.cocode.dk/pi/
+
+Two models, particle-1 and DeepSeek V4.1 Flash, run through the pi agent on OpenRouter at maximum thinking, each building
+Tank Duel and a zoomable 2D Tower Bridge, one run each. These runs cannot be compared with setups A to G. The page
+declares two read-only tools:
+
+- describe: Says what this page shows: the pi benchmark, its models and tasks, and that it is not comparable with setups A to G.
+- list_runs: Lists the four runs: task, model, seconds, tokens per second, output tokens, rounds, dollars, lines of code and tests, checks passed.
+
+## Tower Bridge pages: https://tanks.cocode.dk/pi/tower-bridge/<model>/index.html
+
+One playable page per model (particle-1, deepseek-v4.1-flash-1017). Each page declares four tools:
+
+- describe: Says what is on the page: the zoom, the centre of the view and the named parts of the bridge.
+- zoom_by: Multiplies the zoom about the window centre, with {"factor": 2}, clamped to 1 to 20.
+- pan: Moves the view by dx, dy in the model's units.
+- reset: Zoom 1, centred.
+
 ## Other files
 
 - https://tanks.cocode.dk/robots.txt

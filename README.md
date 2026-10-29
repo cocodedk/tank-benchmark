@@ -7,6 +7,15 @@ Which build lifecycle should [graph-loop](https://github.com/cocodedk/graph-loop
 same game, **Tank Duel** (`spec.md`): a three.js arena where you and the computer drive tanks and shoot shells
 that bounce once off the walls. Every version is kept in this project, under `runs/<setup>-<n>/`.
 
+## pi benchmark
+
+A second, separate benchmark: two OpenRouter models, particle-1 and DeepSeek V4.1 Flash, run through the
+pi agent CLI at maximum thinking, each building Tank Duel and a zoomable 2D
+Tower Bridge, one run each. It is measured differently from setups A to G (no reviewer, no repairs from a brief; one
+session tests its own work; cost is token counts times OpenRouter's list price), so the two cannot be compared.
+Results: [tanks.cocode.dk/pi/](https://tanks.cocode.dk/pi/). Sources, numbers and prompts: `runs/pi/`; the page: `pi/`;
+the scripts that ran and measured it: `scripts/pi/` and `hidden/bridge_checks.py`.
+
 ## Website
 
 - [English](https://tanks.cocode.dk/)

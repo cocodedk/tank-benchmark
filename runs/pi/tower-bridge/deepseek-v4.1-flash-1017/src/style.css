@@ -1,0 +1,133 @@
+:root {
+  color-scheme: dark;
+  --ink: #e9e3d2;
+  --panel: rgba(18, 31, 38, 0.74);
+  --line: rgba(233, 227, 210, 0.3);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #17395f;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+#scene {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  cursor: grab;
+  touch-action: none;
+}
+
+#scene.dragging {
+  cursor: grabbing;
+}
+
+#hud {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  box-shadow: 0 4px 18px rgba(5, 12, 16, 0.28);
+  backdrop-filter: blur(3px);
+  pointer-events: none;
+}
+
+#hud button {
+  pointer-events: auto;
+  min-width: 34px;
+  height: 32px;
+  padding: 0 11px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: rgba(237, 230, 211, 0.08);
+  color: var(--ink);
+  font: 600 15px/1 "Georgia", "Times New Roman", serif;
+  cursor: pointer;
+}
+
+#hud button:hover {
+  background: rgba(237, 230, 211, 0.18);
+}
+
+#hud button:active {
+  transform: translateY(1px);
+}
+
+#readout {
+  min-width: 50px;
+  padding: 0 6px;
+  color: var(--ink);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-align: right;
+}
+
+#title {
+  position: fixed;
+  left: 22px;
+  top: 18px;
+  margin: 0;
+  color: rgba(244, 238, 222, 0.9);
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 6px rgba(8, 20, 28, 0.5);
+}
+
+#hint {
+  position: fixed;
+  left: 22px;
+  bottom: 18px;
+  margin: 0;
+  color: rgba(240, 235, 222, 0.68);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-shadow: 0 1px 4px rgba(8, 20, 28, 0.6);
+}
+
+#signature {
+  position: fixed;
+  right: 18px;
+  top: 18px;
+  max-width: 46vw;
+  margin: 0;
+  color: rgba(240, 235, 222, 0.62);
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  text-align: right;
+  text-shadow: 0 1px 4px rgba(8, 20, 28, 0.6);
+  pointer-events: none;
+}
+
+@media (max-width: 560px) {
+  #signature {
+    top: 42px;
+    max-width: 52vw;
+    font-size: 9px;
+  }
+
+  #title {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+  }
+
+  #hint {
+    max-width: 190px;
+  }
+}

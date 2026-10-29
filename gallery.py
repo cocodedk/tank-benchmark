@@ -13,6 +13,7 @@ import shutil
 import struct
 
 import calls as calling
+import pi_site
 
 HERE = pathlib.Path(__file__).resolve().parent
 SITE = HERE / "site"
@@ -118,7 +119,7 @@ def page_html(lang: str, rows: list[dict]) -> str:
         "canonical": url, "og_locale": cfg["locale"], "og_locale_alt": cfg["other"],
         "jsonld": json.dumps(jsonld(lang, text, url), ensure_ascii=False, indent=1)})
     body = fill((HERE / "page.html").read_text(encoding="utf-8"), {
-        **strings, "notes": "".join(f"<li>{item}</li>" for item in text["notes"]),
+        **strings, "root": cfg["root"], "notes": "".join(f"<li>{item}</li>" for item in text["notes"]),
         "method": "".join(f"<li>{item}</li>" for item in text["method"]),})
     script_data = {**text, "en_setups": I18N["en"]["setups"], "root": cfg["root"]}
     body = body.replace("/*DATA*/[]", script_json(rows)).replace("/*T*/{}", script_json(script_data))
@@ -154,7 +155,7 @@ def sitemap(lastmod: str) -> str:
     urls = "".join(f"\n  <url>\n    <loc>{ORIGIN}/{cfg['path']}</loc>\n    {alternates}\n    <lastmod>{lastmod}</lastmod>\n  </url>"
                    for cfg in PAGES.values())
     return f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" ' \
-           f'xmlns:xhtml="http://www.w3.org/1999/xhtml">{urls}\n</urlset>\n'
+           f'xmlns:xhtml="http://www.w3.org/1999/xhtml">{urls}{pi_site.sitemap_entry(ORIGIN)}\n</urlset>\n'
 
 
 def llms(rows: list[dict]) -> str:
@@ -187,7 +188,7 @@ One playable game per finished run ({games}). Each game page declares seven tool
 - set_ai: Switches the computer's driving and firing on or off.
 - reset: Starts a new game: round 1, score 0 to 0, start positions and full health.
 
-## Other files
+{pi_site.llms(ORIGIN)}## Other files
 
 - {ORIGIN}/robots.txt
 - {ORIGIN}/sitemap.xml
@@ -204,6 +205,7 @@ def main() -> None:
     for name in STATIC:
         shutil.copyfile(HERE / name, SITE / name)
     publish_games(rows)
+    pi_site.publish(HERE, SITE)
     # The repository keeps its own copy of what crawlers and agents read, so it is reviewed with the code.
     lastmod = max(r["updated"][:10] for r in runs if "hidden" in r)
     for name, text in (("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {ORIGIN}/sitemap.xml\n"),

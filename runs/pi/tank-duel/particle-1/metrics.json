@@ -1,0 +1,45 @@
+{
+ "task": "tank-duel",
+ "model": "particle-1",
+ "thinking": "max",
+ "price_per_million_usd": {
+  "input": 0.25,
+  "output": 1.0,
+  "cache_read": 0.03
+ },
+ "wall_s": 308,
+ "turns": 39,
+ "gen_s": 119,
+ "tool_s": 159,
+ "tok_per_s": 449.1,
+ "input": 368934,
+ "output": 53345,
+ "cacheRead": 1771776,
+ "cacheWrite": 0,
+ "reasoning": 33282,
+ "cost_flat_usd": 0.1987,
+ "cost_billed_usd": 0.1987,
+ "suite_runs": 8,
+ "suite_green": [
+  false,
+  true,
+  false,
+  false,
+  true,
+  true,
+  true,
+  true
+ ],
+ "errors": 0,
+ "code": {
+  "game": 821,
+  "test": 268,
+  "files": 19,
+  "longest": 149
+ },
+ "judge": {
+  "checks_passed": 14,
+  "checks_total": 14,
+  "suite_tests": 20
+ }
+}

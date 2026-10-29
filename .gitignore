@@ -1,3 +1,4 @@
 __pycache__/
 runs/*/game/vendor/
 site/
+runs/pi/*/*/vendor/
