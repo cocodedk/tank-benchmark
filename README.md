@@ -73,7 +73,7 @@ Clone and run:
 
 - Each run may spend up to $10 of Claude, so `all 2` may spend up to $140.
 - `run` and `all` replace the run's folder in `benchmarks/setups-a-g/runs/`. Copy a run somewhere first if you want to keep it.
-- A build happens in `~/lean-tmp/tank-bench/work`, outside this project, so it never sees `hidden/` or another
+- A build happens in `~/lean-tmp/tank-bench/work`, outside this project, so it never sees `benchmarks/setups-a-g/hidden/` or another
   run. Set `BENCH_WORK` to use another folder.
 - To play or test one game by hand: `cd benchmarks/setups-a-g/runs/B-1/game && bash test/gate.sh`.
 
@@ -98,8 +98,8 @@ Clone and run:
     page.html             the results page template; gallery.py fills in its data
 
 `benchmarks/setups-a-g/runs/<run>/run.json` holds the numbers (dollars per call and per model, minutes, cache-read share, rounds,
-the suite and review per round, the hidden checks), `runs/<run>/game/` the game, `runs/<run>/log/` what each
-call said, and `runs/<run>/screenshot.png` its first frame.
+the suite and review per round, the hidden checks), `game/` the game, `log/` what each
+call said, and `screenshot.png` its first frame, all in that run's folder.
 
 | Part | Made with |
 |---|---|
