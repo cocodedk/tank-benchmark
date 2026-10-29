@@ -1,0 +1,82 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #cfe4f2;
+}
+
+body {
+  font: 12px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: #23303a;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#art {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+  touch-action: none;
+}
+
+#art.dragging {
+  cursor: grabbing;
+}
+
+.controls {
+  position: fixed;
+  top: 14px;
+  left: 14px;
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.controls button {
+  min-width: 34px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  background: rgba(28, 42, 52, 0.34);
+  color: #fff;
+  font: 600 15px/1 system-ui, sans-serif;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.15s ease;
+}
+
+.controls button:hover {
+  background: rgba(28, 42, 52, 0.58);
+}
+
+.controls button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.controls #reset {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.credit {
+  position: fixed;
+  right: 10px;
+  bottom: 8px;
+  margin: 0;
+  padding: 4px 9px;
+  border-radius: 6px;
+  background: rgba(22, 34, 43, 0.4);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 11px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}

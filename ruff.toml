@@ -1,6 +1,6 @@
 # One rule set for this machine, the pre-commit hook and CI: a user-level ruff config never applies here.
 line-length = 150
-extend-exclude = ["runs", "site"]
+extend-exclude = ["benchmarks/*/runs", "benchmarks/pi-*", "site"]
 
 [lint]
 select = ["E", "F", "W"]

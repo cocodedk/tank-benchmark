@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Taj Mahal — a zoomable model</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <canvas id="art" role="img" aria-label="The Taj Mahal seen across its reflecting pool"></canvas>
+
+  <nav class="controls" aria-label="Zoom and pan">
+    <button id="zoom-in" type="button" aria-label="Zoom in">+</button>
+    <button id="zoom-out" type="button" aria-label="Zoom out">−</button>
+    <button id="reset" type="button">Reset</button>
+  </nav>
+
+  <p class="credit">Built by pi · deepseek/deepseek-v4.1-flash-1017 · pi on OpenRouter</p>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>

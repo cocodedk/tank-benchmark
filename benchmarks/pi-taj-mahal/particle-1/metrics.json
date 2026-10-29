@@ -1,0 +1,42 @@
+{
+ "task": "taj-mahal",
+ "model": "particle-1",
+ "thinking": "max",
+ "price_per_million_usd": {
+  "input": 0.25,
+  "output": 1.0,
+  "cache_read": 0.03
+ },
+ "wall_s": 600,
+ "turns": 58,
+ "gen_s": 333,
+ "tool_s": 101,
+ "tok_per_s": 237.5,
+ "input": 403770,
+ "output": 79019,
+ "cacheRead": 3857408,
+ "cacheWrite": 0,
+ "reasoning": 41050,
+ "cost_flat_usd": 0.2957,
+ "cost_billed_usd": 0.2957,
+ "suite_runs": 5,
+ "suite_green": [
+  false,
+  false,
+  true,
+  true,
+  true
+ ],
+ "errors": 0,
+ "code": {
+  "game": 911,
+  "test": 134,
+  "files": 15,
+  "longest": 150
+ },
+ "judge": {
+  "checks_passed": 25,
+  "checks_total": 26,
+  "suite_tests": 14
+ }
+}

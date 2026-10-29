@@ -30,22 +30,23 @@ bash scripts/install-hooks.sh
 ## Build and Test Commands
 
 ```bash
+cd benchmarks/setups-a-g
 python3 bench.py status                 # where every run is (reads only)
-cp -r seed/vendor runs/B-1/game/ && cd runs/B-1/game && bash test/gate.sh   # one game's suite (three.js is not committed per run)
+cp -r seed/vendor runs/B-1/game/ && (cd runs/B-1/game && bash test/gate.sh)   # one game's suite (three.js is not committed per run)
 python3 bench.py grade B-1              # hidden checks again; rewrites that run's record in runs/
-python3 gallery.py                      # rebuild site/ from the finished runs
+python3 ../../gallery.py                # rebuild site/ from the finished runs
 ```
 
 ## Coding Style
 
 - Python 3 and the standard library only, in the harness.
 - Keep files small and focused.
-- The game is plain ES modules with no build step, and it loads nothing from the network. Leave `seed/vendor/` as it is.
+- The game is plain ES modules with no build step, and it loads nothing from the network. Leave `benchmarks/setups-a-g/seed/vendor/` as it is.
 
 ## Changing the Benchmark
 
-- `spec.md`, `seed/` and `hidden/` are the inputs to every run. A change to them changes what future runs measure, and existing runs were made with the old version. The pull request says which runs it affects.
-- The setups are `COMBOS` in `bench.py`. The setups table in `README.md` must match them.
+- `benchmarks/setups-a-g/spec.md`, `seed/` and `hidden/` are the inputs to every run. A change to them changes what future runs measure, and existing runs were made with the old version. The pull request says which runs it affects.
+- The setups are `COMBOS` in `benchmarks/setups-a-g/bench.py`. The setups table in `README.md` must match them.
 
 ## Branches and Commits
 
@@ -65,10 +66,10 @@ Branch names use **kebab-case**. Never commit directly to `main`. Always open a 
 
 ## PR Checklist
 
-- [ ] `python3 bench.py status` runs without error.
+- [ ] `python3 benchmarks/setups-a-g/bench.py status` runs without error.
 - [ ] Changed behaviour was tried by hand, and the pull request says which command.
 - [ ] `README.md` and `CONTRIBUTING.md` are updated if behaviour changed.
-- [ ] A change to `spec.md`, `seed/` or `hidden/` says which runs it affects.
+- [ ] A change to `benchmarks/setups-a-g/spec.md`, `seed/` or `hidden/` says which runs it affects.
 
 ## Security
 

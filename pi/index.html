@@ -8,15 +8,15 @@
      secondary: particle-1 vs DeepSeek V4.1 Flash, OpenRouter coding model benchmark, AI coding speed and cost
      intent:    informational
 -->
-<title>pi benchmark: particle-1 vs DeepSeek V4.1 Flash on two coding tasks · Cocode</title>
-<meta name="description" content="Two AI models run through the pi agent on OpenRouter at maximum thinking, building a three.js tank game and a zoomable 2D Tower Bridge: time, speed, rounds, cost, code and quality. One run each.">
+<title>pi benchmark: particle-1 vs DeepSeek V4.1 Flash on three coding tasks · Cocode</title>
+<meta name="description" content="Two AI models run through the pi agent on OpenRouter at maximum thinking, building a three.js tank game, a zoomable 2D Tower Bridge and a 2D Taj Mahal drawn from a photo: time, speed, rounds, cost, code and quality. One run each.">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Babak Bandpey">
 <link rel="canonical" href="https://tanks.cocode.dk/pi/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Tank Duel Benchmark">
-<meta property="og:title" content="pi benchmark: particle-1 vs DeepSeek V4.1 Flash on two coding tasks">
-<meta property="og:description" content="Two models, two tasks, one run each, all through the pi agent on OpenRouter at maximum thinking.">
+<meta property="og:title" content="pi benchmark: particle-1 vs DeepSeek V4.1 Flash on three coding tasks">
+<meta property="og:description" content="Two models, three tasks, one run each, all through the pi agent on OpenRouter at maximum thinking.">
 <meta property="og:url" content="https://tanks.cocode.dk/pi/">
 <meta property="og:image" content="https://tanks.cocode.dk/pi/shots/tower-bridge-deepseek-v4.1-flash-1017-z1.png">
 <meta property="og:image:width" content="1280">
@@ -42,7 +42,7 @@
 <main>
   <header class="stack">
     <h1>pi benchmark: particle-1 vs DeepSeek V4.1 Flash</h1>
-    <p class="lede">Two models, run through the <strong>pi</strong> agent CLI on OpenRouter at maximum thinking, each building the same two things from the same prompt: the three.js tank game Tank Duel, and a 2D Tower Bridge you can zoom, in pure JavaScript, HTML and CSS with no library.</p>
+    <p class="lede">Two models, run through the <strong>pi</strong> agent CLI on OpenRouter at maximum thinking, each building the same three things from the same prompt: the three.js tank game Tank Duel, a 2D Tower Bridge you can zoom, and a 2D Taj Mahal you can zoom, drawn from a photo the model has to read. The two zoomable pages are pure JavaScript, HTML and CSS with no library.</p>
     <p class="byline">By <a href="https://linkedin.com/in/babakbandpey" rel="author">Babak Bandpey</a> · <a href="../">The first benchmark: seven Claude build setups, A to G</a></p>
   </header>
 
@@ -62,8 +62,8 @@
       </tbody>
     </table></div>
     <div class="grid">
-      <article class="card"><img src="shots/tank-duel-particle-1.png" alt="particle-1's Tank Duel: a walled arena seen from above, a blue and a red tank, health bars and the score." width="1280" height="800" loading="lazy"><div class="body"><h3>particle-1</h3><p class="facts"><a class="play" href="https://github.com/cocodedk/tank-benchmark/tree/main/runs/pi/tank-duel/particle-1">Source</a></p></div></article>
-      <article class="card"><img src="shots/tank-duel-deepseek-v4.1-flash-1017.png" alt="DeepSeek's Tank Duel: a walled arena seen from above, a blue and a red tank, health bars and the score." width="1280" height="800" loading="lazy"><div class="body"><h3>deepseek-v4.1-flash-1017</h3><p class="facts"><a class="play" href="https://github.com/cocodedk/tank-benchmark/tree/main/runs/pi/tank-duel/deepseek-v4.1-flash-1017">Source</a></p></div></article>
+      <article class="card"><img src="shots/tank-duel-particle-1.png" alt="particle-1's Tank Duel: a walled arena seen from above, a blue and a red tank, health bars and the score." width="1280" height="800" loading="lazy"><div class="body"><h3>particle-1</h3><p class="facts"><a class="play" href="https://github.com/cocodedk/tank-benchmark/tree/main/benchmarks/pi-tank-duel/particle-1">Source</a></p></div></article>
+      <article class="card"><img src="shots/tank-duel-deepseek-v4.1-flash-1017.png" alt="DeepSeek's Tank Duel: a walled arena seen from above, a blue and a red tank, health bars and the score." width="1280" height="800" loading="lazy"><div class="body"><h3>deepseek-v4.1-flash-1017</h3><p class="facts"><a class="play" href="https://github.com/cocodedk/tank-benchmark/tree/main/benchmarks/pi-tank-duel/deepseek-v4.1-flash-1017">Source</a></p></div></article>
     </div>
   </section>
 
@@ -86,16 +86,35 @@
   </section>
 
   <section class="stack">
+    <h2>Taj Mahal, from a photo</h2>
+    <p>The Tower Bridge prompt again, but the building is in a photo attached to the message: each model had to read the photo and draw it in code, with no image file, no <code>&lt;img&gt;</code> and no <code>data:image</code> in the page. Both pages passed my six image checks. DeepSeek passed all 20 zoom checks; particle-1 passed 19, because its pan moves the view the opposite way from what my check expected. On looks it is split. Particle-1 follows the photo's composition and proportions more closely: a dome with a spire, four minarets with balconies, the portal, the pool and the cypress avenue. DeepSeek adds more detail (inlaid flowers, a calligraphy band, lattice windows, visitors) but its proportions drift: a huge portal, a small dome and thin minarets. Particle-1 was 2.2 times faster and cheaper at the full price; DeepSeek was cheaper at the price it was billed, because the whole run came after 10:00 UTC.</p>
+    <div class="scroll"><table id="taj-mahal">
+      <thead><tr><th>Model</th><th class="num">Time</th><th class="num">Speed</th><th class="num">Output tokens</th><th class="num">Rounds</th><th class="num">Cost</th><th class="num">Code / tests</th><th class="num">Checks</th></tr></thead>
+      <tbody>
+        <tr data-task="taj-mahal" data-model="particle-1" data-seconds="600" data-tok-per-s="238" data-output-tokens="79019" data-rounds="3" data-suite-runs="5" data-cost-flat="0.296" data-cost-billed="0.296" data-code="911" data-tests="134" data-checks="25/26"><td>particle-1</td><td class="num">10 min 0 s</td><td class="num">238 tok/s</td><td class="num">79,019</td><td class="num">3</td><td class="num">$0.30</td><td class="num">911 / 134</td><td class="num"><span class="pill bad">25/26</span></td></tr>
+        <tr data-task="taj-mahal" data-model="deepseek-v4.1-flash-1017" data-seconds="1345" data-tok-per-s="139" data-output-tokens="129470" data-rounds="4" data-suite-runs="9" data-cost-flat="0.346" data-cost-billed="0.173" data-code="1893" data-tests="127" data-checks="26/26"><td>deepseek-v4.1-flash-1017</td><td class="num">22 min 25 s</td><td class="num">139 tok/s</td><td class="num">129,470</td><td class="num">4</td><td class="num">$0.35 ($0.17 billed)</td><td class="num">1,893 / 127</td><td class="num"><span class="pill ok">26/26</span></td></tr>
+      </tbody>
+    </table></div>
+    <div class="grid">
+      <article class="card"><img src="shots/taj-mahal-particle-1-z1.png" alt="particle-1's Taj Mahal at zoom 1: a white dome and four minarets, a pool and a path of cypress trees." width="1280" height="800" loading="lazy"><div class="body"><h3>particle-1, zoom 1 <a class="play" href="taj-mahal/particle-1/index.html">Play</a></h3></div></article>
+      <article class="card"><img src="shots/taj-mahal-particle-1-z5.png" alt="particle-1's Taj Mahal at zoom 5: the portal with two rosettes and the base of the dome." width="1280" height="800" loading="lazy"><div class="body"><h3>particle-1, zoom 5 <a class="play" href="taj-mahal/particle-1/index.html">Play</a></h3></div></article>
+      <article class="card"><img src="shots/taj-mahal-deepseek-v4.1-flash-1017-z1.png" alt="DeepSeek's Taj Mahal at zoom 1: a large portal, a dome, thin minarets, visitors and cypress trees." width="1280" height="800" loading="lazy"><div class="body"><h3>deepseek, zoom 1 <a class="play" href="taj-mahal/deepseek-v4.1-flash-1017/index.html">Play</a></h3></div></article>
+      <article class="card"><img src="shots/taj-mahal-deepseek-v4.1-flash-1017-z5.png" alt="DeepSeek's Taj Mahal at zoom 5: inlaid flowers, a calligraphy band and lattice windows on the portal." width="1280" height="800" loading="lazy"><div class="body"><h3>deepseek, zoom 5 <a class="play" href="taj-mahal/deepseek-v4.1-flash-1017/index.html">Play</a></h3></div></article>
+    </div>
+  </section>
+
+  <section class="stack">
     <h2>How these runs were made</h2>
     <ul>
       <li>Each model ran once per task in a fresh copy of the seed, through the pi CLI (<code>pi -p --thinking max</code>) with OpenRouter, at the same time as the other, with the same prompt. The model tests its own work with <code>bash test/gate.sh</code> until the suite is green. I re-ran the suite and graded the page afterwards.</li>
       <li><strong>Time</strong> is the whole session. <strong>Speed</strong> is output tokens, thinking included, divided by the time the model spent generating. <strong>Rounds</strong> counts the suite runs up to and including the first green one; a model that goes green first time has one.</li>
-      <li><strong>Cost</strong> is the token counts times OpenRouter's list price (particle-1 $0.25 in and $1.00 out per million tokens; DeepSeek $0.30 and $1.20), not billed amounts. DeepSeek halves its price on weekends and on weekdays at 00 to 01, 04 to 06 and from 10:00 UTC; the Tower Bridge run crossed 10:00 UTC, so it shows the flat price and the price it was billed.</li>
+      <li><strong>Cost</strong> is the token counts times OpenRouter's list price (particle-1 $0.25 in and $1.00 out per million tokens; DeepSeek $0.30 and $1.20), not billed amounts. DeepSeek halves its price on weekends and on weekdays at 00 to 01, 04 to 06 and from 10:00 UTC; the Tower Bridge run crossed 10:00 UTC and the Taj Mahal run came wholly after it, so both show the flat price and the price it was billed.</li>
       <li><strong>Code / tests</strong> counts non-blank lines. The tests are Python (the seed's Playwright suite); the games are JavaScript, HTML and CSS, and Tank Duel loads three.js as its spec requires.</li>
-      <li>Tank Duel is graded by the same 14 hidden checks as the first benchmark. Tower Bridge is graded by 20 checks of mine, written after both runs finished, and by looking at the pages.</li>
-      <li>Rule slips: I told the models not to read or write outside their checkout. In Tank Duel both read the machine's WebMCP skill notes; in Tower Bridge DeepSeek wrote a helper script to <code>/tmp</code>. Nothing was copied from another run.</li>
+      <li>Tank Duel is graded by the same 14 hidden checks as the first benchmark. Tower Bridge is graded by 20 checks of mine, written after both runs finished, and by looking at the pages. Taj Mahal gets those 20 plus 6 image checks: no image file in the checkout, no source naming an image, no image element, no image loaded, the signature line, no console errors.</li>
+      <li>For Taj Mahal the photo was attached to the pi message and is not in the checkout. Before the runs a probe showed both models receive it and name the building. The signature is in the prompt this time: <code>Built by &lt;your own name&gt; · &lt;model id&gt; · pi on OpenRouter</code>. Particle-1 wrote its own name; DeepSeek wrote &ldquo;pi&rdquo;, the agent's name. The photo is not published here.</li>
+      <li>Rule slips: I told the models not to read or write outside their checkout. In Tank Duel both read the machine's WebMCP skill notes; in Tower Bridge DeepSeek wrote a helper script to <code>/tmp</code>; in Taj Mahal both read the WebMCP skill notes again. Nothing was copied from another run.</li>
       <li>Each model signed its own work afterwards: a separate short pi session per work, the same model at maximum thinking, asked to add its name and model id as a small visible line. The signatures are not in the times, tokens, costs or code counts above; the suites and checks were re-run after signing and gave the same results. The screenshots show the signed pages.</li>
-      <li>The numbers, prompts, sources and scripts are in <a href="https://github.com/cocodedk/tank-benchmark/tree/main/runs/pi">the repository</a> under <code>runs/pi</code> and <code>scripts/pi</code>.</li>
+      <li>The numbers, prompts, sources and scripts are in <a href="https://github.com/cocodedk/tank-benchmark/tree/main/benchmarks">the repository</a> under <code>benchmarks/pi-*</code> and <code>scripts/pi</code>.</li>
     </ul>
   </section>
 </main>
@@ -113,11 +132,11 @@ const rows = () => [...document.querySelectorAll("tbody tr[data-task]")].map(tr 
   const mc = document.modelContext;
   if (!mc) return;
   const tools = [
-    { name: "describe", description: "Says what this page shows: the pi benchmark of two models on two tasks, one run each, and that it cannot be compared with setups A to G. Read-only.",
+    { name: "describe", description: "Says what this page shows: the pi benchmark of two models on three tasks, one run each, and that it cannot be compared with setups A to G. Read-only.",
       execute: async () => ({ ok: true, title: "pi benchmark", agent: "pi", provider: "openrouter", thinking: "max",
         models: [...new Set(rows().map(r => r.model))], tasks: [...new Set(rows().map(r => r.task))], runs_per_model_and_task: 1,
         comparable_with_setups_a_to_g: false }) },
-    { name: "list_runs", description: "Lists the four runs: task, model, seconds, output tokens per second, output tokens, rounds, flat and billed dollars, lines of code and tests, checks passed. Read-only.",
+    { name: "list_runs", description: "Lists the six runs: task, model, seconds, output tokens per second, output tokens, rounds, flat and billed dollars, lines of code and tests, checks passed. Read-only.",
       execute: async () => ({ ok: true, runs: rows() }) },
   ];
   for (const tool of tools) {

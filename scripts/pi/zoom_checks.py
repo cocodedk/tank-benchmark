@@ -1,4 +1,4 @@
-"""python bridge_checks.py <checkout>: the judge's checks on a zoomable page, through its own tools and real input."""
+"""python zoom_checks.py <checkout>: the judge's checks on a zoomable page, through its own tools and real input."""
 import pathlib
 import re
 import sys

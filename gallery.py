@@ -11,11 +11,14 @@ import pathlib
 import re
 import shutil
 import struct
-
-import calls as calling
-import pi_site
+import sys
 
 HERE = pathlib.Path(__file__).resolve().parent
+SETUPS = HERE / "benchmarks" / "setups-a-g"
+sys.path.insert(0, str(SETUPS))
+
+import calls as calling  # noqa: E402 — the setups' harness, after the path line above
+import pi_site  # noqa: E402
 SITE = HERE / "site"
 ORIGIN = "https://tanks.cocode.dk"
 REPO = "https://github.com/cocodedk/tank-benchmark"
@@ -63,17 +66,17 @@ def summary(r: dict) -> dict:
             "cache_repair": [c["cache_read_share"] for c in repairs],
             "workers": r["final"]["workers"], "lines": r["final"]["diff_lines"],
             "code_lines": written(r["run"])[0], "test_lines": written(r["run"])[1],
-            "shot": png_size(HERE / "runs" / r["run"] / "screenshot.png")}
+            "shot": png_size(SETUPS / "runs" / r["run"] / "screenshot.png")}
 
 
 def written(run: str) -> tuple[int, int]:
     """Non-blank lines the run wrote, as (game code, tests); a file still as the seed gave it does not count."""
-    game, code, tests = HERE / "runs" / run / "game", 0, 0
+    game, code, tests = SETUPS / "runs" / run / "game", 0, 0
     for path in sorted(game.rglob("*")):
         rel = path.relative_to(game)
         if not path.is_file() or rel.parts[0] == "vendor" or path.suffix not in (".html", ".js", ".css", ".py"):
             continue
-        seed = HERE / "seed" / rel
+        seed = SETUPS / "seed" / rel
         if seed.is_file() and seed.read_bytes() == path.read_bytes():
             continue
         lines = sum(1 for line in path.read_text(encoding="utf-8").splitlines() if line.strip())
@@ -130,7 +133,7 @@ def publish_games(rows: list[dict]) -> None:
     (SITE / "shots").mkdir(parents=True, exist_ok=True)
     for row in rows:
         run = row["run"]
-        game = HERE / "runs" / run / "game"
+        game = SETUPS / "runs" / run / "game"
         for path in sorted(game.rglob("*")):
             rel = path.relative_to(game)
             if not path.is_file() or {"test", "vendor"} & set(rel.parts) or path.suffix not in (".html", ".js", ".txt"):
@@ -146,7 +149,7 @@ def publish_games(rows: list[dict]) -> None:
                 out.write_text(text, encoding="utf-8")
             else:
                 shutil.copyfile(path, out)
-        shutil.copyfile(HERE / "runs" / run / "screenshot.png", SITE / "shots" / f"{run}.png")
+        shutil.copyfile(SETUPS / "runs" / run / "screenshot.png", SITE / "shots" / f"{run}.png")
 
 
 def sitemap(lastmod: str) -> str:
@@ -196,7 +199,7 @@ One playable game per finished run ({games}). Each game page declares seven tool
 
 
 def main() -> None:
-    runs = [json.loads(p.read_text(encoding="utf-8")) for p in sorted((HERE / "runs").glob("*/run.json"))]
+    runs = [json.loads(p.read_text(encoding="utf-8")) for p in sorted((SETUPS / "runs").glob("*/run.json"))]
     rows = [summary(r) for r in runs if "hidden" in r]
     shutil.rmtree(SITE, ignore_errors=True)
     (SITE / "fa").mkdir(parents=True)
